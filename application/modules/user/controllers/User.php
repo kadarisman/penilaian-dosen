@@ -33,123 +33,120 @@ class User extends CI_Controller
     }
 
     //below the methods for managing the user table
-    public function all_user() //methode get all user
+    public function admin() //methode get all user
     {
-        $data['title'] = 'Semua Pengguna';
-        // /$data['user'] = $this->Model_user->get_user_ById($id);
-        $data['total_user'] = $this->Model_user->count_all_user();
-        $data['total_mahasiswa'] = $this->Model_mahasiswa->count_mahasiswa();
-        $data['total_prodi'] = $this->Model_prodi->count_prodi();
-        $data['total_dosen'] = $this->Model_dosen->count_dosen();
-        $data['user_prodi'] = $this->Model_user->user_prodi_get_data();
-        $data['user_dosen'] = $this->Model_user->user_dosen_get_data();
-        $data['data_all_users'] = $this->Model_user->get_all_user();
-        $data['selectLevel'] = $this->Model_user->select_where('level', 'nama_level');
+        $data['title'] = 'Admin';
+        $data['admin'] = $this->Model_user->get_admin(); // get data user prodi where her session
+        $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+        $data['user_dosen'] = $this->Model_user->user_dosen_get_data(); //--//
+        $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--//  
+        $data['total_mahasiswa'] = $this->Model_user->count_mahasiswa();
+        $data['total_prodi'] = $this->Model_user->count_prodi();
+        $data['total_dosen'] = $this->Model_user->count_dosen();
+        $data['total_bpm'] = $this->Model_user->count_bpm();
+        $data['total_admin'] = $this->Model_user->count_admin();
         $data['selectProdi'] = $this->Model_user->select_where('prodi', 'nama_prodi');
-        $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
-        $data['data_user_prodi'] = $this->Model_user->get_user_prodi(); //get data for user where level prodi to display list
+        // $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
         $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('v_all_users', $data);
+        $this->load->view('admin_dan_BPM/v_user_admin', $data);
         $this->load->view('templates/footer');
     }
 
-    public function admin_BPM() //methode get users where level admin only
+
+    public function user_BPM() //methode get users where level admin only
     {
-        $data['title'] = 'Pengguna Admin';
-        $data['total_user_admin'] = $this->Model_user->count_admin_user();
-        $data['total_prodi'] = $this->Model_prodi->count_prodi();
-        $data['total_dosen'] = $this->Model_dosen->count_dosen();
-        $data['total_mahasiswa'] = $this->Model_mahasiswa->count_mahasiswa();
-        $data['user_prodi'] = $this->Model_user->user_prodi_get_data();
-        $data['user_dosen'] = $this->Model_user->user_dosen_get_data();
-        $data['user_dosen'] = $this->Model_user->user_dosen_get_data();
-        $data['data_all_users'] = $this->Model_user->get_all_user();
-        $data['selectLevel'] = $this->Model_user->select_where('level', 'nama_level');
+        $data['title'] = 'BPM';
+        $data['BPM'] = $this->Model_user->get_BPM(); // get data user prodi where her session
+        $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+        $data['user_dosen'] = $this->Model_user->user_dosen_get_data(); //--//
+        $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--//  
+        $data['total_mahasiswa'] = $this->Model_user->count_mahasiswa();
+        $data['total_prodi'] = $this->Model_user->count_prodi();
+        $data['total_dosen'] = $this->Model_user->count_dosen();
+        $data['total_bpm'] = $this->Model_user->count_bpm();
+        $data['total_admin'] = $this->Model_user->count_admin();
         $data['selectProdi'] = $this->Model_user->select_where('prodi', 'nama_prodi');
-        $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
-        $data['data_user_admin'] = $this->Model_user->get_user_admin(); //get data for user where level admin to display list
+        // $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
         $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('v_admin_BPM_user', $data);
+        $this->load->view('admin_dan_BPM/v_user_BPM', $data);
         $this->load->view('templates/footer');
     }
 
     public function user_prodi() //methode get users where level prodi only
     {
         $data['title'] = 'Pengguna Prodi';
-        $data['total_user_prodi'] = $this->Model_user->count_prodi_user();
-        $data['total_prodi'] = $this->Model_prodi->count_prodi();
-        $data['total_dosen'] = $this->Model_dosen->count_dosen();
-        $data['total_mahasiswa'] = $this->Model_mahasiswa->count_mahasiswa();
-        $data['user_prodi'] = $this->Model_user->user_prodi_get_data();
-        $data['user_dosen'] = $this->Model_user->user_dosen_get_data();
-        $data['user_dosen'] = $this->Model_user->user_dosen_get_data();
-        $data['data_all_users'] = $this->Model_user->get_all_user();
-        $data['selectLevel'] = $this->Model_user->select_where('level', 'nama_level');
+        $data['prodi'] = $this->Model_user->get_user_prodi(); // get data user prodi where her session
+        $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+        $data['user_dosen'] = $this->Model_user->user_dosen_get_data(); //--//
+        $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--//  
+        $data['total_mahasiswa'] = $this->Model_user->count_mahasiswa();
+        $data['total_prodi'] = $this->Model_user->count_prodi();
+        $data['total_dosen'] = $this->Model_user->count_dosen();
+        $data['total_bpm'] = $this->Model_user->count_bpm();
+        $data['total_admin'] = $this->Model_user->count_admin();
         $data['selectProdi'] = $this->Model_user->select_where('prodi', 'nama_prodi');
-        $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
-        $data['data_user_prodi'] = $this->Model_user->get_user_prodi(); //get data for user where level prodi to display list
+        // $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
         $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('v_prodi_user', $data);
+        $this->load->view('admin_dan_BPM/v_user_prodi', $data);
         $this->load->view('templates/footer');
     }
 
     public function user_dosen() //methode get users where level dosen only
     {
         $data['title'] = 'Pengguna Dosen';
-        $data['total_user_dosen'] = $this->Model_user->count_dosen_user();
-        $data['total_prodi'] = $this->Model_prodi->count_prodi();
-        $data['total_dosen'] = $this->Model_dosen->count_dosen();
-        $data['total_mahasiswa'] = $this->Model_mahasiswa->count_mahasiswa();
-        $data['user_prodi'] = $this->Model_user->user_prodi_get_data();
-        $data['user_dosen'] = $this->Model_user->user_dosen_get_data();
-        $data['user_dosen'] = $this->Model_user->user_dosen_get_data();
-        $data['data_user_dosen'] = $this->Model_user->get_user_dosen();
-        $data['data_all_users'] = $this->Model_user->get_all_user();
-        $data['selectLevel'] = $this->Model_user->select_where('level', 'nama_level');
+        $data['dosen'] = $this->Model_user->get_user_dosen(); // get data user prodi where her session
+        $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+        $data['user_dosen'] = $this->Model_user->user_dosen_get_data(); //--//
+        $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--//  
+        $data['total_mahasiswa'] = $this->Model_user->count_mahasiswa();
+        $data['total_prodi'] = $this->Model_user->count_prodi();
+        $data['total_dosen'] = $this->Model_user->count_dosen();
+        $data['total_bpm'] = $this->Model_user->count_bpm();
+        $data['total_admin'] = $this->Model_user->count_admin();
         $data['selectProdi'] = $this->Model_user->select_where('prodi', 'nama_prodi');
-        $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
+        // $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
         $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('v_dosen_user', $data);
+        $this->load->view('admin_dan_BPM/v_user_dosen', $data);
         $this->load->view('templates/footer');
     }
 
     public function user_mahasiswa() //methode get users where level mahasiswa only
     {
-        $data['title'] = 'Pengguna Mahasiwa';
-        $data['total_user_mahasiswa'] = $this->Model_user->count_mahasiswa_user();
-        $data['total_prodi'] = $this->Model_prodi->count_prodi();
-        $data['total_dosen'] = $this->Model_dosen->count_dosen();
-        $data['total_mahasiswa'] = $this->Model_mahasiswa->count_mahasiswa();
-        $data['user_prodi'] = $this->Model_user->user_prodi_get_data();
-        $data['user_dosen'] = $this->Model_user->user_dosen_get_data();
-        $data['user_dosen'] = $this->Model_user->user_dosen_get_data();
-        $data['data_all_users'] = $this->Model_user->get_all_user();
-        $data['selectLevel'] = $this->Model_user->select_where('level', 'nama_level');
+        $data['title'] = 'Pengguna Mahasiswa';
+        $data['mahasiswa'] = $this->Model_user->get_user_mahasiswa(); // get data user prodi where her session
+        $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+        $data['user_dosen'] = $this->Model_user->user_dosen_get_data(); //--//
+        $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--//  
+        $data['total_mahasiswa'] = $this->Model_user->count_mahasiswa();
+        $data['total_prodi'] = $this->Model_user->count_prodi();
+        $data['total_dosen'] = $this->Model_user->count_dosen();
+        $data['total_bpm'] = $this->Model_user->count_bpm();
+        $data['total_admin'] = $this->Model_user->count_admin();
         $data['selectProdi'] = $this->Model_user->select_where('prodi', 'nama_prodi');
-        $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
-        $data['data_user_mahasiswa'] = $this->Model_user->get_user_mahasiswa();
+        // $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
         $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('v_mahasiswa_user', $data);
+        $this->load->view('admin_dan_BPM/v_user_mahasiswa', $data);
         $this->load->view('templates/footer');
     }
 

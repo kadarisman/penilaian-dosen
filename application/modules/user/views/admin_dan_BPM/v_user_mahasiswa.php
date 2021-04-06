@@ -1,14 +1,13 @@
 <div class="content-wrapper">
     <section class="content">
-        <?php $this->load->view('templates/nav_menu_table_user'); ?>
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Pengguna Level Mahasiswa <?= $total_user_mahasiswa; ?>
-                                Orang</h3><br>
-
+                            <h3 class="box-title" id="judul">Semua user Mahasiswa</h3>
+                            <a href="" class="badge progress-bar-primary">Tambah</a>
+                            <br>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -18,29 +17,40 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Username</th>
-                                            <th>Nama</th>
                                             <th>Level</th>
+                                            <th>Nama</th>
                                             <th>Prodi</th>
+                                            <th>Alamat</th>
+                                            <th>Ditambahkan</th>
+                                            <th>Diubah</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php //var_dump($all_admin); 
+                                        <?php //var_dump($all_mhsin); 
                                         ?>
                                         <?php
                                         $no = 0;
-                                        foreach ($data_user_mahasiswa as $usr) :
+                                        foreach ($mahasiswa as $mhs) :
                                             $no++ ?>
                                         <tr>
                                             <td><?= $no ?></td>
-                                            <td><?= $usr->username; ?></td>
-                                            <td><?= $usr->nama_mahasiswa; ?></td>
-                                            <td><?= $usr->level; ?></td>
-                                            <td><?= $usr->nama_prodi; ?></td>
+                                            <td><?= $mhs->username; ?></td>
+                                            <td><?= $mhs->level; ?></td>
+                                            <td><?= $mhs->nama_mahasiswa; ?></td>
+                                            <td><?= $mhs->nama_prodi; ?></td>
+                                            <td><?= $mhs->alamat_mahasiswa; ?></td>
+                                            <td><?= $mhs->created; ?></td>
+                                            <td><?php if ($mhs->modifed == null) {
+                                                        echo 'Belum pernah';
+                                                    } else {
+                                                        echo $mhs->modifed;
+                                                    }
+                                                    ?>
+                                            </td>
                                             <td>
-                                                <a class="badge progress-bar-primary" data-toggle="modal"
-                                                    data-target="#modal_edit_user<?= $usr->id_user; ?>">Edit</a>
-                                                <a href="<?= base_url('user/User/delete_user/' . $usr->id_user); ?>"
+                                                <a href="" class="badge progress-bar-primary">Edit</a>
+                                                <a href="<?= base_url('user/User/delete_user/' . $mhs->id_user); ?>"
                                                     class="badge progress-bar-danger"
                                                     onclick="return confirm('Yakin..?');">Hapus</a>
                                             </td>

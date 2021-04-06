@@ -19,31 +19,31 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= base_url('Prodi') ?>"><i class="fa fa-circle-o"></i> Admin
+                    <li><a href="<?= base_url('admin') ?>"><i class="fa fa-circle-o"></i> Admin
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-red"><?= $total_admin; ?></small>
                             </span>
                         </a>
                     </li>
-                    <li><a href="<?= base_url('Prodi') ?>"><i class="fa fa-circle-o"></i> BPM
+                    <li><a href="<?= base_url('BPM') ?>"><i class="fa fa-circle-o"></i> BPM
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-red"><?= $total_bpm; ?></small>
                             </span>
                         </a>
                     </li>
-                    <li><a href="<?= base_url('Prodi') ?>"><i class="fa fa-circle-o"></i> Prodi
+                    <li><a href="<?= base_url('user-prodi') ?>"><i class="fa fa-circle-o"></i> Prodi
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-red"><?= $total_prodi; ?></small>
                             </span>
                         </a>
                     </li>
-                    <li><a href="<?= base_url('Dosen') ?>"><i class="fa fa-circle-o"></i> Dosen
+                    <li><a href="<?= base_url('user-dosen') ?>"><i class="fa fa-circle-o"></i> Dosen
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-red"><?= $total_dosen ?></small>
                             </span>
                         </a>
                     </li>
-                    <li><a href="<?= base_url('Mahasiswa') ?>"><i class="fa fa-circle-o"></i> Mahasiswa
+                    <li><a href="<?= base_url('user-mahasiswa') ?>"><i class="fa fa-circle-o"></i> Mahasiswa
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-red"><?= $total_mahasiswa; ?></small>
                             </span>

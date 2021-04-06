@@ -32,18 +32,18 @@ class Model_user extends CI_Model
         return $this->db->count_all_results('user');
     }
 
-    public function get_all_user() // query get all data user from user table
+
+    public function get_admin()
     {
         $this->db->select('*');
-        $this->db->from('user');
-        $this->db->order_by("level", "asc");
+        $this->db->from('user')->where('level', 'admin');
         return $this->db->get()->result();
     }
 
-    public function get_user_admin()
+    public function get_BPM()
     {
         $this->db->select('*');
-        $this->db->from('user')->where('level', 'admin BPM');
+        $this->db->from('user')->where('level', 'BPM');
         return $this->db->get()->result();
     }
 

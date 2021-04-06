@@ -1,12 +1,12 @@
 <div class="content-wrapper">
     <section class="content">
-        <?php $this->load->view('templates/nav_menu_table_user'); ?>
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Pengguna Level Dosen <?= $total_user_dosen; ?> Orang</h3>
+                            <h3 class="box-title" id="judul">Semua Admin</h3>
+                            <a href="" class="badge progress-bar-primary">Tambah</a>
                             <br>
                         </div>
                         <!-- /.box-header -->
@@ -18,7 +18,8 @@
                                             <th>No</th>
                                             <th>Username</th>
                                             <th>Level</th>
-                                            <th>Prodi</th>
+                                            <th>Ditambahkan</th>
+                                            <th>Diubah</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -27,17 +28,23 @@
                                         ?>
                                         <?php
                                         $no = 0;
-                                        foreach ($data_user_dosen as $usr) :
+                                        foreach ($admin as $adm) :
                                             $no++ ?>
                                         <tr>
                                             <td><?= $no ?></td>
-                                            <td><?= $usr->username; ?></td>
-                                            <td><?= $usr->level; ?></td>
-                                            <td><?= $usr->nama_prodi; ?></td>
+                                            <td><?= $adm->username; ?></td>
+                                            <td><?= $adm->level; ?></td>
+                                            <td><?= $adm->created; ?></td>
+                                            <td><?php if ($adm->modifed == null) {
+                                                        echo 'Belum pernah';
+                                                    } else {
+                                                        echo $adm->modifed;
+                                                    }
+                                                    ?>
+                                            </td>
                                             <td>
-                                                <a class="badge progress-bar-primary" data-toggle="modal"
-                                                    data-target="#modal_edit_user<?= $usr->id_user; ?>">Edit</a>
-                                                <a href="<?= base_url('user/User/delete_user/' . $usr->id_user); ?>"
+                                                <a href="" class="badge progress-bar-primary">Edit</a>
+                                                <a href="<?= base_url('user/User/delete_user/' . $adm->id_user); ?>"
                                                     class="badge progress-bar-danger"
                                                     onclick="return confirm('Yakin..?');">Hapus</a>
                                             </td>

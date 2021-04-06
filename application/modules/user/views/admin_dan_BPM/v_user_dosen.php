@@ -1,15 +1,14 @@
 <div class="content-wrapper">
     <section class="content">
-        <?php $this->load->view('templates/nav_menu_table_user'); ?>
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Semua Pengguna <?= $total_user;
-                                                                            ?> Orang</h3><br>
+                            <h3 class="box-title" id="judul">Semua user Dosen</h3>
+                            <a href="" class="badge progress-bar-primary">Tambah</a>
+                            <br>
                         </div>
-                        <?= $this->session->flashdata('message1'); ?>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="table-responsive">
@@ -19,24 +18,37 @@
                                             <th>No</th>
                                             <th>Username</th>
                                             <th>Level</th>
+                                            <th>Nama</th>
+                                            <th>Alamat</th>
+                                            <th>Ditambahkan</th>
+                                            <th>Diubah</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php //var_dump($all_admin); 
+                                        <?php //var_dump($all_dsnin); 
                                         ?>
                                         <?php
                                         $no = 0;
-                                        foreach ($data_all_users as $usr) :
+                                        foreach ($dosen as $dsn) :
                                             $no++ ?>
                                         <tr>
                                             <td><?= $no ?></td>
-                                            <td><?= $usr->username; ?></td>
-                                            <td><?= $usr->level; ?></td>
+                                            <td><?= $dsn->username; ?></td>
+                                            <td><?= $dsn->level; ?></td>
+                                            <td><?= $dsn->nama_dosen; ?></td>
+                                            <td><?= $dsn->alamat_dosen; ?></td>
+                                            <td><?= $dsn->created; ?></td>
+                                            <td><?php if ($dsn->modifed == null) {
+                                                        echo 'Belum pernah';
+                                                    } else {
+                                                        echo $dsn->modifed;
+                                                    }
+                                                    ?>
+                                            </td>
                                             <td>
-                                                <a class="badge progress-bar-primary" data-toggle="modal"
-                                                    data-target="#modal_edit_user<?= $usr->id_user; ?>">Edit</a>
-                                                <a href="<?= base_url('user/User/delete_user/' . $usr->id_user); ?>"
+                                                <a href="" class="badge progress-bar-primary">Edit</a>
+                                                <a href="<?= base_url('user/User/delete_user/' . $dsn->id_user); ?>"
                                                     class="badge progress-bar-danger"
                                                     onclick="return confirm('Yakin..?');">Hapus</a>
                                             </td>

@@ -45,7 +45,7 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <style>
     body {
-        background-image: url(<?= base_url('assets/img/bg2.jpg');
+        background-image: url(<?= base_url('assets/img/bg11.jpg');
         ?>);
         height: 100%;
         background-position: center;

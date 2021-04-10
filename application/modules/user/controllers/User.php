@@ -21,6 +21,12 @@ class User extends CI_Controller
         $data['total_dosen'] = $this->Model_user->count_dosen();
         $data['total_bpm'] = $this->Model_user->count_bpm();
         $data['total_admin'] = $this->Model_user->count_admin();
+        $data['total_fakultas'] = $this->Model_fakultas->count_fakultas();
+        $data['total_prodi'] = $this->Model_prodi->count_prodi();
+        $data['total_dosen'] = $this->Model_dosen->count_dosen();
+        $data['total_mahasiswa'] = $this->Model_mahasiswa->count_mahasiswa();
+        $data['total_pertanyaan'] = $this->Model_pertanyaan->count_pertanyaan();
+        $data['total_matakuliah'] = $this->Model_matakuliah->count_matakuliah();
         $data['selectProdi'] = $this->Model_user->select_where('prodi', 'nama_prodi');
         // $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
         $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
@@ -45,6 +51,7 @@ class User extends CI_Controller
         $data['total_dosen'] = $this->Model_user->count_dosen();
         $data['total_bpm'] = $this->Model_user->count_bpm();
         $data['total_admin'] = $this->Model_user->count_admin();
+        $data['total_fakultas'] = $this->Model_fakultas->count_fakultas();
         $data['selectProdi'] = $this->Model_user->select_where('prodi', 'nama_prodi');
         // $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
         $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
@@ -69,6 +76,7 @@ class User extends CI_Controller
         $data['total_dosen'] = $this->Model_user->count_dosen();
         $data['total_bpm'] = $this->Model_user->count_bpm();
         $data['total_admin'] = $this->Model_user->count_admin();
+        $data['total_fakultas'] = $this->Model_fakultas->count_fakultas();
         $data['selectProdi'] = $this->Model_user->select_where('prodi', 'nama_prodi');
         // $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
         $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
@@ -93,6 +101,7 @@ class User extends CI_Controller
         $data['total_dosen'] = $this->Model_user->count_dosen();
         $data['total_bpm'] = $this->Model_user->count_bpm();
         $data['total_admin'] = $this->Model_user->count_admin();
+        $data['total_fakultas'] = $this->Model_fakultas->count_fakultas();
         $data['selectProdi'] = $this->Model_user->select_where('prodi', 'nama_prodi');
         // $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
         $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
@@ -116,6 +125,7 @@ class User extends CI_Controller
         $data['total_dosen'] = $this->Model_user->count_dosen();
         $data['total_bpm'] = $this->Model_user->count_bpm();
         $data['total_admin'] = $this->Model_user->count_admin();
+        $data['total_fakultas'] = $this->Model_fakultas->count_fakultas();
         $data['selectProdi'] = $this->Model_user->select_where('prodi', 'nama_prodi');
         // $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
         $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
@@ -139,6 +149,7 @@ class User extends CI_Controller
         $data['total_dosen'] = $this->Model_user->count_dosen();
         $data['total_bpm'] = $this->Model_user->count_bpm();
         $data['total_admin'] = $this->Model_user->count_admin();
+        $data['total_fakultas'] = $this->Model_fakultas->count_fakultas();
         $data['selectProdi'] = $this->Model_user->select_where('prodi', 'nama_prodi');
         // $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
         $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
@@ -176,6 +187,7 @@ class User extends CI_Controller
             $data['total_mahasiswa'] = $this->Model_mahasiswa->count_mahasiswa();
             $data['total_prodi'] = $this->Model_prodi->count_prodi();
             $data['total_dosen'] = $this->Model_dosen->count_dosen();
+            $data['total_fakultas'] = $this->Model_fakultas->count_fakultas();
             $data['selectProdi'] = $this->Model_user->select_where('prodi', 'nama_prodi');
             $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
             $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();

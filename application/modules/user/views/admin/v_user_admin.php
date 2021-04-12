@@ -5,12 +5,13 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Semua BPM</h3>
-                            <a href="" class="badge progress-bar-primary">Tambah</a>
+                            <h3 class="box-title" id="judul">Semua Admin</h3>
+                            <a href="<?= base_url('tambah-user-admin') ?>" class="badge progress-bar-primary">Tambah</a>
                             <br>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
+                            <?= $this->session->flashdata('message1'); ?>
                             <div class="table-responsive">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
@@ -24,27 +25,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php //var_dump($all_bpmin); 
+                                        <?php //var_dump($all_admin); 
                                         ?>
                                         <?php
                                         $no = 0;
-                                        foreach ($BPM as $bpm) :
+                                        foreach ($admin as $adm) :
                                             $no++ ?>
                                         <tr>
                                             <td><?= $no ?></td>
-                                            <td><?= $bpm->username; ?></td>
-                                            <td><?= $bpm->level; ?></td>
-                                            <td><?= $bpm->created; ?></td>
-                                            <td><?php if ($bpm->modifed == null) {
+                                            <td><?= $adm->username; ?></td>
+                                            <td><?= $adm->level; ?></td>
+                                            <td><?= $adm->created; ?></td>
+                                            <td><?php if ($adm->modifed == null) {
                                                         echo 'Belum pernah';
                                                     } else {
-                                                        echo $bpm->modifed;
+                                                        echo $adm->modifed;
                                                     }
                                                     ?>
                                             </td>
                                             <td>
                                                 <a href="" class="badge progress-bar-primary">Edit</a>
-                                                <a href="<?= base_url('user/User/delete_user/' . $bpm->id_user); ?>"
+                                                <a href="<?= base_url('user/User/delete_user/' . $adm->id_user); ?>"
                                                     class="badge progress-bar-danger"
                                                     onclick="return confirm('Yakin..?');">Hapus</a>
                                             </td>

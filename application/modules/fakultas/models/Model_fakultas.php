@@ -12,4 +12,8 @@ class Model_fakultas extends CI_Model
     {
         return $this->db->get('fakultas')->result();
     }
+    public function add_fakultas($data)
+    {
+        $this->db->insert('fakultas', $data);
+    }
 }

@@ -5,8 +5,8 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Semua user Dosen</h3>
-                            <a href="" class="badge progress-bar-primary">Tambah</a>
+                            <h3 class="box-title" id="judul">Semua user Prodi</h3>
+                            <a href="<?= base_url('tambah-user-prodi') ?>" class="badge progress-bar-primary">Tambah</a>
                             <br>
                         </div>
                         <!-- /.box-header -->
@@ -18,37 +18,35 @@
                                             <th>No</th>
                                             <th>Username</th>
                                             <th>Level</th>
-                                            <th>Nama</th>
-                                            <th>Alamat</th>
+                                            <th>Prodi</th>
                                             <th>Ditambahkan</th>
                                             <th>Diubah</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php //var_dump($all_dsnin); 
+                                        <?php //var_dump($all_prodiin); 
                                         ?>
                                         <?php
                                         $no = 0;
-                                        foreach ($dosen as $dsn) :
+                                        foreach ($prodi as $prodi) :
                                             $no++ ?>
                                         <tr>
                                             <td><?= $no ?></td>
-                                            <td><?= $dsn->username; ?></td>
-                                            <td><?= $dsn->level; ?></td>
-                                            <td><?= $dsn->nama_dosen; ?></td>
-                                            <td><?= $dsn->alamat_dosen; ?></td>
-                                            <td><?= $dsn->created; ?></td>
-                                            <td><?php if ($dsn->modifed == null) {
+                                            <td><?= $prodi->username; ?></td>
+                                            <td><?= $prodi->level; ?></td>
+                                            <td><?= $prodi->nama_prodi; ?></td>
+                                            <td><?= $prodi->created; ?></td>
+                                            <td><?php if ($prodi->modifed == null) {
                                                         echo 'Belum pernah';
                                                     } else {
-                                                        echo $dsn->modifed;
+                                                        echo $prodi->modifed;
                                                     }
                                                     ?>
                                             </td>
                                             <td>
                                                 <a href="" class="badge progress-bar-primary">Edit</a>
-                                                <a href="<?= base_url('user/User/delete_user/' . $dsn->id_user); ?>"
+                                                <a href="<?= base_url('user/User/delete_user/' . $prodi->id_user); ?>"
                                                     class="badge progress-bar-danger"
                                                     onclick="return confirm('Yakin..?');">Hapus</a>
                                             </td>

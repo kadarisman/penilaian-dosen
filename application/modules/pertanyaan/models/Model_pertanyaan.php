@@ -16,4 +16,15 @@ class Model_pertanyaan extends CI_Model
         $this->db->order_by('nama_kriteria', 'asc');
         return $this->db->get()->result();
     }
+    public function get_all_kriteria()
+    {
+        $this->db->select('*');
+        $this->db->from('kriteria_pertanyaan');
+        $this->db->order_by('nama_kriteria', 'asc');
+        return $this->db->get()->result();
+    }
+    public function add_pertanyaan($data)
+    {
+        $this->db->insert('pertanyaan', $data);
+    }
 }

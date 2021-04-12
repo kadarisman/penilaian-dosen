@@ -16,4 +16,8 @@ class Model_prodi extends CI_Model
         $this->db->order_by('nama_fakultas', 'asc');
         return $this->db->get()->result();
     }
+    public function add_prodi($data)
+    {
+        $this->db->insert('prodi', $data);
+    }
 }

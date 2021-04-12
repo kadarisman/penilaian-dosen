@@ -16,4 +16,8 @@ class Model_dosen extends CI_Model
         $this->db->order_by('nama_prodi', 'asc');
         return $this->db->get()->result();
     }
+    public function add_dosen($data)
+    {
+        $this->db->insert('dosen', $data);
+    }
 }

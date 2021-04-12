@@ -5,8 +5,8 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Semua Admin</h3>
-                            <a href="" class="badge progress-bar-primary">Tambah</a>
+                            <h3 class="box-title" id="judul">Semua BPM</h3>
+                            <a href="<?= base_url('tambah-user-BPM') ?>" class="badge progress-bar-primary">Tambah</a>
                             <br>
                         </div>
                         <!-- /.box-header -->
@@ -24,27 +24,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php //var_dump($all_admin); 
+                                        <?php //var_dump($all_bpmin); 
                                         ?>
                                         <?php
                                         $no = 0;
-                                        foreach ($admin as $adm) :
+                                        foreach ($BPM as $bpm) :
                                             $no++ ?>
                                         <tr>
                                             <td><?= $no ?></td>
-                                            <td><?= $adm->username; ?></td>
-                                            <td><?= $adm->level; ?></td>
-                                            <td><?= $adm->created; ?></td>
-                                            <td><?php if ($adm->modifed == null) {
+                                            <td><?= $bpm->username; ?></td>
+                                            <td><?= $bpm->level; ?></td>
+                                            <td><?= $bpm->created; ?></td>
+                                            <td><?php if ($bpm->modifed == null) {
                                                         echo 'Belum pernah';
                                                     } else {
-                                                        echo $adm->modifed;
+                                                        echo $bpm->modifed;
                                                     }
                                                     ?>
                                             </td>
                                             <td>
                                                 <a href="" class="badge progress-bar-primary">Edit</a>
-                                                <a href="<?= base_url('user/User/delete_user/' . $adm->id_user); ?>"
+                                                <a href="<?= base_url('user/User/delete_user/' . $bpm->id_user); ?>"
                                                     class="badge progress-bar-danger"
                                                     onclick="return confirm('Yakin..?');">Hapus</a>
                                             </td>

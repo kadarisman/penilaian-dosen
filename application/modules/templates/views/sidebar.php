@@ -21,31 +21,31 @@
                 <ul class="treeview-menu">
                     <li><a href="<?= base_url('admin') ?>"><i class="fa fa-circle-o"></i> Admin
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red"><?= $total_admin; ?></small>
+                                <small class="label pull-right bg-red"><?= $total_user_admin; ?></small>
                             </span>
                         </a>
                     </li>
                     <li><a href="<?= base_url('BPM') ?>"><i class="fa fa-circle-o"></i> BPM
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red"><?= $total_bpm; ?></small>
+                                <small class="label pull-right bg-red"><?= $total_user_bpm; ?></small>
                             </span>
                         </a>
                     </li>
                     <li><a href="<?= base_url('user-prodi') ?>"><i class="fa fa-circle-o"></i> Prodi
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red"><?= $total_prodi; ?></small>
+                                <small class="label pull-right bg-red"><?= $total_user_prodi; ?></small>
                             </span>
                         </a>
                     </li>
                     <li><a href="<?= base_url('user-dosen') ?>"><i class="fa fa-circle-o"></i> Dosen
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red"><?= $total_dosen ?></small>
+                                <small class="label pull-right bg-red"><?= $total_user_dosen ?></small>
                             </span>
                         </a>
                     </li>
                     <li><a href="<?= base_url('user-mahasiswa') ?>"><i class="fa fa-circle-o"></i> Mahasiswa
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red"><?= $total_mahasiswa; ?></small>
+                                <small class="label pull-right bg-red"><?= $total_user_mahasiswa; ?></small>
                             </span>
                         </a>
                     </li>
@@ -118,19 +118,19 @@
                 <ul class="treeview-menu">
                     <li><a href="<?= base_url('Prodi') ?>"><i class="fa fa-circle-o"></i> Prodi
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red"><?= $total_prodi; ?></small>
+                                <small class="label pull-right bg-red"><?= $total_user_prodi; ?></small>
                             </span>
                         </a>
                     </li>
                     <li><a href="<?= base_url('Dosen') ?>"><i class="fa fa-circle-o"></i> Dosen
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red"><?= $total_dosen ?></small>
+                                <small class="label pull-right bg-red"><?= $total_user_dosen ?></small>
                             </span>
                         </a>
                     </li>
                     <li><a href="<?= base_url('Mahasiswa') ?>"><i class="fa fa-circle-o"></i> Mahasiswa
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red"><?= $total_mahasiswa; ?></small>
+                                <small class="label pull-right bg-red"><?= $total_user_mahasiswa; ?></small>
                             </span>
                         </a>
                     </li>
@@ -203,13 +203,13 @@
                 <ul class="treeview-menu">
                     <li><a href="<?= base_url('Dosen') ?>"><i class="fa fa-circle-o"></i> Dosen
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red"><?= $total_dosen ?></small>
+                                <small class="label pull-right bg-red"><?= $total_user_dosen ?></small>
                             </span>
                         </a>
                     </li>
                     <li><a href="<?= base_url('Mahasiswa') ?>"><i class="fa fa-circle-o"></i> Mahasiswa
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red"><?= $total_mahasiswa; ?></small>
+                                <small class="label pull-right bg-red"><?= $total_user_mahasiswa; ?></small>
                             </span>
                         </a>
                     </li>
@@ -224,13 +224,13 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= base_url('Dosen') ?>"><i class="fa fa-circle-o"></i>Data Dosen
+                    <li><a href="<?= base_url('dosen') ?>"><i class="fa fa-circle-o"></i>Data Dosen
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-red"><?= $total_dosen ?></small>
                             </span>
                         </a>
                     </li>
-                    <li><a href="<?= base_url('Mahasiswa') ?>"><i class="fa fa-circle-o"></i>Data Mahasiswa
+                    <li><a href="<?= base_url('mahasiswa') ?>"><i class="fa fa-circle-o"></i>Data Mahasiswa
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-red"><?= $total_mahasiswa; ?></small>
                             </span>

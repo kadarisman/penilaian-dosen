@@ -62,49 +62,20 @@ $(function() {
 </script>
 <script>
 $(document).ready(function() {
-    $("#selectLevel").change(function() {
-        if ($(this).val() == "prodi") {
-            $('#level').after(
-                '<div class="form-group" name="prodi"><label>Prodi</label> <select class="form-control border border-dark" tabindex="-1" aria-hidden="true" name="selectProdi"><option selected="true" disabled="disabled">Pilih Prodi</option><?php foreach ($selectProdi as $prd) : ?><option value="<?= $prd->kd_prodi; ?>"><?= $prd->nama_prodi; ?></option> <?php endforeach; ?> </select></span></div>'
-            )
-            $('[name ="npm_mahasiswa"]').remove();
-            $("#username").val('');
-        } else if ($(this).val() == "mahasiswa") {
-            $('#level').after(
-                '<div class="form-group" name="npm_mahasiswa"><label>NPM</label> <select class="form-control border border-dark" tabindex="-1" aria-hidden="true" id="selectNPM" name="selectNPM"><option selected="true" disabled="disabled">Pilih Mahasiswa</option><?php foreach ($selectMahasiswa as $mhs) : ?><option value="<?= $mhs->NPM; ?>"><?= $mhs->NPM, ' : ', $mhs->nama_mahasiswa, ' : ', $mhs->nama_prodi; ?></option> <?php endforeach; ?> </select></div>'
-            )
-            $("#selectNPM").change(function() {
-                var NPM = $("#selectNPM option:selected").val();
-                $("#username").val(NPM);
-            })
-            $('[name="prodi"]').remove();
-        } else {
-            $('[name="prodi"]').remove();
-            $('[name ="npm_mahasiswa"]').remove();
-            $("#username").val('');
-        }
-        $("#level").trigger("change");
-    });
-
-    $('[name ="level_U"]').change(function() {
-        if ($(this).val() == 'prodi') {
-            $('[name="e_l_u"]').after(
-                '<div class="form-group" name="e_prodi"><label>Prodi</label> <select class="form-control border border-dark" tabindex="-1" aria-hidden="true" name="s_e_prodi"><option selected="true" disabled="disabled">Pilih Prodi</option><?php foreach ($selectProdi as $prd) : ?><option value="<?= $prd->kd_prodi; ?>"><?= $prd->nama_prodi; ?></option> <?php endforeach; ?> </select></div>'
-            )
-        } else {
-            $('[name="e_prodi"]').remove();
-        }
-    });
-
-   
-
     window.setTimeout(function() {
         $("#msg").fadeTo(200, 0).slideUp(200, function() {
             $(this).remove();
         });
     }, 3000);
-
-
+    $('.chck').click(function() {
+        if ($(this).is(':checked')) {
+            $('#password').attr('type', 'text');
+            $('#password2').attr('type', 'text');
+        } else {
+            $('#password').attr('type', 'password');
+            $('#password2').attr('type', 'password');
+        }
+    });
 })
 </script>
 </body>

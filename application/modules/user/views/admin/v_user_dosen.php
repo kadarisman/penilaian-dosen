@@ -5,8 +5,8 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Semua user Mahasiswa</h3>
-                            <a href="" class="badge progress-bar-primary">Tambah</a>
+                            <h3 class="box-title" id="judul">Semua user Dosen</h3>
+                            <a href="<?= base_url('tambah-user-dosen') ?>" class="badge progress-bar-primary">Tambah</a>
                             <br>
                         </div>
                         <!-- /.box-header -->
@@ -27,32 +27,50 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php //var_dump($all_mhsin); 
+                                        <?php //var_dump($all_dsnin); 
                                         ?>
                                         <?php
                                         $no = 0;
-                                        foreach ($mahasiswa as $mhs) :
+                                        foreach ($dosen as $dsn) :
                                             $no++ ?>
                                         <tr>
                                             <td><?= $no ?></td>
-                                            <td><?= $mhs->username; ?></td>
-                                            <td><?= $mhs->level; ?></td>
-                                            <td><?= $mhs->nama_mahasiswa; ?></td>
-                                            <td><?= $mhs->nama_prodi; ?></td>
-                                            <td><?= $mhs->alamat_mahasiswa; ?></td>
-                                            <td><?= $mhs->created; ?></td>
-                                            <td><?php if ($mhs->modifed == null) {
+                                            <td><?= $dsn->username; ?></td>
+                                            <td><?= $dsn->level; ?></td>
+                                            <td><?php if ($dsn->nama_dosen == null) {
+                                                        echo '<span class="text-danger">Belum terdata</span>';
+                                                    } else {
+                                                        echo $dsn->nama_dosen;
+                                                    } ?>
+                                            </td>
+                                            <td><?php if ($dsn->nama_prodi == null) {
+                                                        echo '<span class="text-danger">Belum terdata</span>';
+                                                    } else {
+                                                        echo $dsn->nama_prodi;
+                                                    } ?>
+                                            </td>
+                                            <td><?php if ($dsn->alamat_dosen == null) {
+                                                        echo '<span class="text-danger">Belum terdata</span>';
+                                                    } else {
+                                                        echo $dsn->alamat_dosen;
+                                                    } ?>
+                                            </td>
+                                            <td><?= $dsn->created; ?></td>
+                                            <td><?php if ($dsn->modifed == null) {
                                                         echo 'Belum pernah';
                                                     } else {
-                                                        echo $mhs->modifed;
+                                                        echo $dsn->modifed;
                                                     }
                                                     ?>
                                             </td>
                                             <td>
                                                 <a href="" class="badge progress-bar-primary">Edit</a>
-                                                <a href="<?= base_url('user/User/delete_user/' . $mhs->id_user); ?>"
+                                                <a href="<?= base_url('user/User/delete_user/' . $dsn->username); ?>"
                                                     class="badge progress-bar-danger"
                                                     onclick="return confirm('Yakin..?');">Hapus</a>
+                                                <?php if ($dsn->nama_dosen == null) { ?>
+                                                <a href="" class="badge progress-bar-success">Tambah data</a>
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                         <?php endforeach; ?>
@@ -70,4 +88,6 @@
         <!-- /.row -->
     </section>
     <!-- /.content -->
+</div>section>
+<!-- /.content -->
 </div>

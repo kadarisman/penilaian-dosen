@@ -16,4 +16,8 @@ class Model_matakuliah extends CI_Model
         $this->db->order_by('nama_prodi', 'asc');
         return $this->db->get()->result();
     }
+    public function add_matakuliah($data)
+    {
+        $this->db->insert('matakuliah', $data);
+    }
 }

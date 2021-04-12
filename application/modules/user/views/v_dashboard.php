@@ -13,11 +13,11 @@
                                                             } elseif ($user_session['level'] == "BPM") {
                                                                 echo $user_session['username'], '..!<br>Status Anda BPM';
                                                             } elseif ($user_session['level'] == "prodi") {
-                                                                echo $user_session['username'], '..!<br>Status Anda Prodi';
+                                                                echo $user_prodi['nama_prodi'], '..!<br>Status Anda Prodi';
                                                             } elseif ($user_session['level'] == "dosen") {
-                                                                echo $user_session['username'], '..!<br>Anda seorang Dosen';
+                                                                echo $user_dosen['nama_dosen'], '..!<br>Anda seorang Dosen';
                                                             } elseif ($user_session['level'] == "mahasiswa") {
-                                                                echo $user_session['username'], '..!<br>Anda seorang Mahasiswa';
+                                                                echo $user_mahasiswa['nama_mahasiswa'], '..!<br>Anda seorang Mahasiswa';
                                                             } else
                                                                 echo 'Tidak terdaftar';
                                                             ?></h2>

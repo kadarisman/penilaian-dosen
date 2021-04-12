@@ -6,7 +6,8 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title" id="judul">Data Semua Matakuliah</h3><br>
-                            <a href="" class="badge progress-bar-primary">Tambah Data</a>
+                            <a href="<?= base_url('tambah-matakuliah') ?>" class="badge progress-bar-primary">Tambah
+                                Data</a>
                             <br>
                         </div>
                         <!-- /.box-header -->

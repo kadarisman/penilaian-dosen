@@ -62,11 +62,11 @@
                                                         } elseif ($user_session['level'] == "BPM") {
                                                             echo $user_session['username'];
                                                         } elseif ($user_session['level'] == "prodi") {
-                                                            echo $user_session['username'];
+                                                            echo $user_prodi['nama_prodi'];
                                                         } elseif ($user_session['level'] == "dosen") {
-                                                            echo $user_session['username'];
+                                                            echo $user_dosen['nama_dosen'];
                                                         } elseif ($user_session['level'] == "mahasiswa") {
-                                                            echo $user_session['username'];
+                                                            echo $user_mahasiswa['nama_mahasiswa'];
                                                         } else
                                                             echo 'Tidak terdaftaar';
                                                         ?>

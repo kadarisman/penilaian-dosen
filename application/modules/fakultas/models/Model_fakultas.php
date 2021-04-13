@@ -16,4 +16,16 @@ class Model_fakultas extends CI_Model
     {
         $this->db->insert('fakultas', $data);
     }
+    public function edit_fakultas($data)
+    {
+        $this->db->where('kd_fakultas', $this->input->post('kd_fakultas'));
+        $this->db->update('fakultas', $data);
+    }
+    public function get_fakultas_by_id($kd_fakultas)
+    {
+        $this->db->select('*');
+        $this->db->from('fakultas');
+        $this->db->where('kd_fakultas', $kd_fakultas);
+        return $this->db->get()->row();
+    }
 }

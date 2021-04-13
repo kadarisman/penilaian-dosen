@@ -11,6 +11,7 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
+                            <?= $this->session->flashdata('message1'); ?>
                             <div class="table-responsive">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
@@ -19,6 +20,7 @@
                                             <th>Username</th>
                                             <th>Level</th>
                                             <th>Prodi</th>
+                                            <th>Fakultas</th>
                                             <th>Ditambahkan</th>
                                             <th>Diubah</th>
                                             <th>Aksi</th>
@@ -29,24 +31,26 @@
                                         ?>
                                         <?php
                                         $no = 0;
-                                        foreach ($prodi as $prodi) :
+                                        foreach ($prodi as $prd) :
                                             $no++ ?>
                                         <tr>
                                             <td><?= $no ?></td>
-                                            <td><?= $prodi->username; ?></td>
-                                            <td><?= $prodi->level; ?></td>
-                                            <td><?= $prodi->nama_prodi; ?></td>
-                                            <td><?= $prodi->created; ?></td>
-                                            <td><?php if ($prodi->modifed == null) {
+                                            <td><?= $prd->username; ?></td>
+                                            <td><?= $prd->level; ?></td>
+                                            <td><?= $prd->nama_prodi; ?></td>
+                                            <td><?= $prd->nama_fakultas; ?></td>
+                                            <td><?= $prd->created; ?></td>
+                                            <td><?php if ($prd->modifed == null) {
                                                         echo 'Belum pernah';
                                                     } else {
-                                                        echo $prodi->modifed;
+                                                        echo $prd->modifed;
                                                     }
                                                     ?>
                                             </td>
                                             <td>
-                                                <a href="" class="badge progress-bar-primary">Edit</a>
-                                                <a href="<?= base_url('user/User/delete_user/' . $prodi->id_user); ?>"
+                                                <a href="<?= base_url('edit-user-2/' . $prd->id_user) ?>"
+                                                    class="badge progress-bar-primary">Edit</a>
+                                                <a href="<?= base_url('user/User/delete_user/' . $prd->id_user); ?>"
                                                     class="badge progress-bar-danger"
                                                     onclick="return confirm('Yakin..?');">Hapus</a>
                                             </td>

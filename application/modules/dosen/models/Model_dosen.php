@@ -20,4 +20,17 @@ class Model_dosen extends CI_Model
     {
         $this->db->insert('dosen', $data);
     }
+    public function edit_dosen($data)
+    {
+        $this->db->where('NIDN', $this->input->post('NIDN'));
+        $this->db->update('dosen', $data);
+    }
+    public function get_dosen_by_id($NIDN)
+    {
+        $this->db->select('*');
+        $this->db->from('dosen');
+        $this->db->join('prodi', 'prodi.kd_prodi=dosen.kd_prodi', 'left');
+        $this->db->where('NIDN', $NIDN);
+        return $this->db->get()->row();
+    }
 }

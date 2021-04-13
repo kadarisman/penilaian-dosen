@@ -52,7 +52,8 @@ class Model_user extends CI_Model
         $this->db->select('*');
         $this->db->from('user')->where('level', 'prodi');
         $this->db->join('prodi', 'prodi.kd_prodi = user.kd_prodi');
-        $this->db->order_by('nama_prodi', 'asc');
+        $this->db->join('fakultas', 'fakultas.kd_fakultas = prodi.kd_fakultas');
+        $this->db->order_by('nama_fakultas', 'asc');
         return $this->db->get()->result();
     }
 
@@ -76,9 +77,21 @@ class Model_user extends CI_Model
         return $this->db->get()->result();
     }
 
-    public function get_user_ById($id)
+    public function get_user_by_id($id_user)
     {
-        return $this->db->get_where('user', ['id_user' => $id])->row_array();
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('id_user', $id_user);
+        return $this->db->get()->row();
+    }
+
+    public function get_user_by_id2($id_user)
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->join('prodi', 'prodi.kd_prodi=user.kd_prodi');
+        $this->db->where('id_user', $id_user);
+        return $this->db->get()->row();
     }
 
     public function add_user($data, $table)
@@ -88,7 +101,7 @@ class Model_user extends CI_Model
 
     public function edit_user($data)
     {
-        $this->db->where('id_user', $data['id_user']);
+        $this->db->where('id_user', $this->input->post('id_user'));
         $this->db->update('user', $data);
     }
 

@@ -20,4 +20,18 @@ class Model_matakuliah extends CI_Model
     {
         $this->db->insert('matakuliah', $data);
     }
+
+    public function edit_matakuliah($data)
+    {
+        $this->db->where('kd_matakuliah', $this->input->post('kd_matakuliah'));
+        $this->db->update('matakuliah', $data);
+    }
+    public function get_matakuliah_by_id($kd_matakuliah)
+    {
+        $this->db->select('*');
+        $this->db->from('matakuliah');
+        $this->db->join('prodi', 'prodi.kd_prodi=matakuliah.kd_prodi', 'left');
+        $this->db->where('kd_matakuliah', $kd_matakuliah);
+        return $this->db->get()->row();
+    }
 }

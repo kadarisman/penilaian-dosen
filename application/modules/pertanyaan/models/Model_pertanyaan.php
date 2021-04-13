@@ -27,4 +27,18 @@ class Model_pertanyaan extends CI_Model
     {
         $this->db->insert('pertanyaan', $data);
     }
+
+    public function edit_pertanyaan($data)
+    {
+        $this->db->where('id_pertanyaan', $this->input->post('id_pertanyaan'));
+        $this->db->update('pertanyaan', $data);
+    }
+    public function get_pertanyaan_by_id($id_pertanyaan)
+    {
+        $this->db->select('*');
+        $this->db->from('pertanyaan');
+        $this->db->join('kriteria_pertanyaan', 'kriteria_pertanyaan.kd_kriteria=pertanyaan.kd_kriteria', 'left');
+        $this->db->where('id_pertanyaan', $id_pertanyaan);
+        return $this->db->get()->row();
+    }
 }

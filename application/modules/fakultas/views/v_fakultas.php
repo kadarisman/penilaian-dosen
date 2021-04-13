@@ -12,6 +12,7 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
+                            <?= $this->session->flashdata('message1'); ?>
                             <div class="table-responsive">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
@@ -34,7 +35,8 @@
                                             <td><?= $fks->kd_fakultas; ?></td>
                                             <td><?= $fks->nama_fakultas; ?></td>
                                             <td>
-                                                <a href="" class="badge progress-bar-primary">Edit</a>
+                                                <a href="<?= base_url('edit-fakultas/' . $fks->kd_fakultas) ?>"
+                                                    class="badge progress-bar-primary">Edit</a>
                                                 <a href="<?= base_url('user/User/delete_user/' . $fks->kd_fakultas); ?>"
                                                     class="badge progress-bar-danger"
                                                     onclick="return confirm('Yakin..?');">Hapus</a>

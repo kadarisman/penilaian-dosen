@@ -43,6 +43,8 @@ class User extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+
+
     //admin methods
     //read data
     public function admin()
@@ -222,6 +224,9 @@ class User extends CI_Controller
         $this->load->view('admin/v_user_mahasiswa', $data);
         $this->load->view('templates/footer');
     }
+
+
+
 
     //add data
     public function tambah_user_admin()
@@ -520,27 +525,136 @@ class User extends CI_Controller
         }
     }
 
-    public function edit_user()
+
+    //edit data
+    public function edit_user1($id_user)
     {
-        $data = [
-            'id_user' => $this->input->post('id_user', true),
-            'level' => $this->input->post('level_U', true),
-            'kd_prodi' => $this->input->post('s_e_prodi', true),
-            'modifed' => date('d-m-Y H:i:s')
-        ];
-        $this->Model_user->edit_user($data);
-        $this->session->set_flashdata('message1', '<div class="alert alert-success" role="alert" id="msg">Berhasil di Edit</div>');
-        redirect('user/User/all_user');
+        $user = $this->Model_user->get_user_by_id($id_user);
+        $original_value = $user->username;
+        if ($this->input->post('username') != $original_value) {
+            $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
+                'is_unique' => 'Username sudah terdaftar !',
+                'required' => 'Username tidak boleh kosong..!'
+            ]);
+        }
+        $this->form_validation->set_rules('level', 'Level', 'required|trim', [
+            'required' => 'Level harus dipilih..!'
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Edit User';
+            //get data for session        
+            $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+            $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+            $data['user_dosen'] = $this->Model_user->user_dosen_get_data(); //--//
+            $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--//  
+
+            //get user by id
+            $data['user1'] = $this->Model_user->get_user_by_id($id_user);
+
+            //count user
+            $data['total_user_mahasiswa'] = $this->Model_user->count_mahasiswa();
+            $data['total_user_prodi'] = $this->Model_user->count_prodi();
+            $data['total_user_dosen'] = $this->Model_user->count_dosen();
+            $data['total_user_bpm'] = $this->Model_user->count_bpm();
+            $data['total_user_admin'] = $this->Model_user->count_admin();
+            $data['mahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
+
+            //count master data
+            $data['total_fakultas'] = $this->Model_fakultas->count_fakultas();
+            $data['total_prodi'] = $this->Model_prodi->count_prodi();
+            $data['total_dosen'] = $this->Model_dosen->count_dosen();
+            $data['total_mahasiswa'] = $this->Model_mahasiswa->count_mahasiswa();
+            $data['total_pertanyaan'] = $this->Model_pertanyaan->count_pertanyaan();
+            $data['total_matakuliah'] = $this->Model_matakuliah->count_matakuliah();
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('admin/edit_user/v_edit_user1', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'username' => htmlspecialchars($this->input->post('username', true)),
+                'level' => htmlspecialchars($this->input->post('level', true)),
+                'modifed' => date('d-m-Y H:i:s')
+            ];
+            $this->Model_user->edit_user($data);
+            $this->session->set_flashdata('message1', '<div class="alert alert-warning" id="msg" role="alert">Sudah diedit !</div>');
+            if ($this->input->post('level') == 'admin') {
+                redirect('admin');
+            } else if ($this->input->post('level') == 'BPM') {
+                redirect('BPM');
+            } else if ($this->input->post('level') == 'dosen') {
+                redirect('dosen');
+            } else if ($this->input->post('level') == 'mahasiswa') {
+                redirect('mahasiswa');
+            } else {
+                redirect('prodi');
+            }
+        }
     }
 
-    public function delete_user($id)
+    public function edit_user2($id_user)
     {
-        $this->Model_user->delete_user($id);
-        $this->session->set_flashdata('message1', '<div class="alert alert-success" role="alert" id="msg">Berhasil di Hapus</div>');
-        redirect('user/User/all_user');
-    }
-    //end for managing the user table
+        $data['prodi'] = $this->Model_prodi->get_all_prodi();
+        $user = $this->Model_user->get_user_by_id($id_user);
+        $original_value = $user->username;
+        if ($this->input->post('username') != $original_value) {
+            $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
+                'is_unique' => 'Username sudah terdaftar !',
+                'required' => 'Username tidak boleh kosong..!'
+            ]);
+        }
+        $this->form_validation->set_rules('kd_prodi', 'Kd_prodi', 'required|trim', [
+            'required' => 'Kode prodi harus dipilih..!'
+        ]);
 
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Edit User';
+            //get data for session        
+            $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+            $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+            $data['user_dosen'] = $this->Model_user->user_dosen_get_data(); //--//
+            $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--//  
+
+            //get user by id
+            $data['user2'] = $this->Model_user->get_user_by_id2($id_user);
+
+            //count user
+            $data['total_user_mahasiswa'] = $this->Model_user->count_mahasiswa();
+            $data['total_user_prodi'] = $this->Model_user->count_prodi();
+            $data['total_user_dosen'] = $this->Model_user->count_dosen();
+            $data['total_user_bpm'] = $this->Model_user->count_bpm();
+            $data['total_user_admin'] = $this->Model_user->count_admin();
+            $data['mahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
+
+            //count master data
+            $data['total_fakultas'] = $this->Model_fakultas->count_fakultas();
+            $data['total_prodi'] = $this->Model_prodi->count_prodi();
+            $data['total_dosen'] = $this->Model_dosen->count_dosen();
+            $data['total_mahasiswa'] = $this->Model_mahasiswa->count_mahasiswa();
+            $data['total_pertanyaan'] = $this->Model_pertanyaan->count_pertanyaan();
+            $data['total_matakuliah'] = $this->Model_matakuliah->count_matakuliah();
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('admin/edit_user/v_edit_user2', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'username' => htmlspecialchars($this->input->post('username', true)),
+                'kd_prodi' => htmlspecialchars($this->input->post('kd_prodi', true)),
+                'modifed' => date('d-m-Y H:i:s')
+            ];
+            // var_dump($data);
+            // die();
+            $this->Model_user->edit_user($data);
+            $this->session->set_flashdata('message1', '<div class="alert alert-warning" id="msg" role="alert">Sudah diedit !</div>');
+            redirect('user-prodi');
+        }
+    }
 }
 
 /* End of file Dashboard.php */

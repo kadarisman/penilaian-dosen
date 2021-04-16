@@ -5,8 +5,8 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Data Semua Matakuliah</h3><br>
-                            <a href="<?= base_url('tambah-matakuliah') ?>" class="badge progress-bar-primary">Tambah
+                            <h3 class="box-title" id="judul">Data Semua Mahasiswa</h3><br>
+                            <a href="<?= base_url('tambah-mahasiswa') ?>" class="badge progress-bar-primary">Tambah
                                 Data</a>
                             <br>
                         </div>
@@ -18,30 +18,34 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Kode Matakuliah</th>
-                                            <th>Matakuliah</th>
-                                            <th>SKS</th>
+                                            <th>Foto</th>
+                                            <th>NPM</th>
+                                            <th>Nama</th>
+                                            <th>Alamat</th>
                                             <th>Prodi</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php //var_dump($all_prdin); 
+                                        <?php //var_dump($all_mhsin); 
                                         ?>
                                         <?php
                                         $no = 0;
-                                        foreach ($matakuliah as $mk) :
+                                        foreach ($mahasiswa as $mhs) :
                                             $no++ ?>
                                         <tr>
                                             <td><?= $no ?></td>
-                                            <td><?= $mk->kd_matakuliah; ?></td>
-                                            <td><?= $mk->nama_matakuliah; ?></td>
-                                            <td><?= $mk->sks; ?></td>
-                                            <td><?= $mk->nama_prodi; ?></td>
+                                            <td><img src="<?= base_url('assets/'); ?>img/users/default.png"
+                                                    class="img-rounded" width="40" height="40">
+                                            </td>
+                                            <td><?= $mhs->NPM; ?></td>
+                                            <td><?= $mhs->nama_mahasiswa; ?></td>
+                                            <td><?= $mhs->alamat_mahasiswa; ?></td>
+                                            <td><?= $mhs->nama_prodi; ?></td>
                                             <td>
-                                                <a href="<?= base_url('edit-matakuliah/' . $mk->kd_matakuliah) ?>"
+                                                <a href="<?= base_url('edit-mahasiswa/' . $mhs->NPM) ?>"
                                                     class="badge progress-bar-primary">Edit</a>
-                                                <a href="<?= base_url('user/User/delete_user/' . $mk->kd_matakuliah); ?>"
+                                                <a href="<?= base_url('mahasiswa/Mahasiswa/delete_mahasiswa/' . $mhs->NPM); ?>"
                                                     class="badge progress-bar-danger"
                                                     onclick="return confirm('Yakin..?');">Hapus</a>
                                             </td>

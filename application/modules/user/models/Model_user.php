@@ -4,8 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Model_user extends CI_Model
 {
-    //below this codeigniter querys builder to process data users from the database :
 
+    //method for admin count data user
     public function count_mahasiswa()
     {
         $this->db->where('level', 'mahasiswa');
@@ -32,7 +32,7 @@ class Model_user extends CI_Model
         return $this->db->count_all_results('user');
     }
 
-
+    //method for admin get data user
     public function get_admin()
     {
         $this->db->select('*');
@@ -72,7 +72,7 @@ class Model_user extends CI_Model
         $this->db->select('*');
         $this->db->from('user')->where('level', 'mahasiswa');
         $this->db->join('mahasiswa', 'mahasiswa.NPM = user.username', 'left');
-        $this->db->join('prodi', 'prodi.kd_prodi = mahasiswa.kd_prodi', 'left');
+        $this->db->join('prodi', 'prodi.kd_prodi = user.kd_prodi', 'left');
         $this->db->order_by('nama_prodi', 'asc');
         return $this->db->get()->result();
     }
@@ -105,23 +105,65 @@ class Model_user extends CI_Model
         $this->db->update('user', $data);
     }
 
-    public function delete_user($id)
+    public function delete_user($id_user)
     {
-        $this->db->delete('user', ['id_user' => $id]);
+        $this->db->delete('user', ['id_user' => $id_user]);
     }
 
-    public function select_where($table, $orderBy)
+    //method for prodi count data user
+    public function count_dosen_prodi()
     {
+        $prodi = $this->session->userdata('kd_prodi');
+        $this->db->from('user');
+        $this->db->where('level', 'dosen');
+        $this->db->where('kd_prodi', $prodi);
+        return $this->db->count_all_results();
+    }
+    public function count_mahasiswa_prodi()
+    {
+        $prodi = $this->session->userdata('kd_prodi');
+        $this->db->from('user');
+        $this->db->where('level', 'mahasiswa');
+        $this->db->where('kd_prodi', $prodi);
+        return $this->db->count_all_results();
+    }
+
+    //method for prodi read data user
+    public function get_user_dosen_prodi()
+    {
+        $prodi = $this->session->userdata('kd_prodi');
         $this->db->select('*');
-        $this->db->from($table);
-        $this->db->order_by($orderBy, "asc");
+        $this->db->from('user');
+        $this->db->join('dosen', 'dosen.NIDN = user.username', 'left');
+        $this->db->join('prodi', 'prodi.kd_prodi = user.kd_prodi', 'left');
+        $where = array('user.level' => 'dosen', 'user.kd_prodi' => $prodi);
+        $this->db->where($where);
+        return $this->db->get()->result();
+    }
+    public function get_user_mahasiswa_prodi()
+    {
+        $prodi = $this->session->userdata('kd_prodi');
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->join('mahasiswa', 'mahasiswa.NPM = user.username', 'left');
+        $this->db->join('prodi', 'prodi.kd_prodi = user.kd_prodi', 'left');
+        $where = array('user.level' => 'mahasiswa', 'user.kd_prodi' => $prodi);
+        $this->db->where($where);
         return $this->db->get()->result();
     }
 
-    public function count_all_user()
-    {
-        return $this->db->count_all('user');
-    }
+    // public function select_where($table, $orderBy)
+    // {
+    //     $this->db->select('*');
+    //     $this->db->from($table);
+    //     $this->db->order_by($orderBy, "asc");
+    //     return $this->db->get()->result();
+    // }
+
+    // public function count_all_user()
+    // {
+    //     return $this->db->count_all('user');
+    // }
 
     public function count_admin_user()
     {

@@ -12,6 +12,16 @@
                     <!-- form start -->
                     <form action="" method="post">
                         <div class="box-body">
+                            <div class="form-group">
+                                <select class="form-control border border-dark" tabindex="-1" aria-hidden="true"
+                                    name="kd_prodi">
+                                    <option selected="true" disabled="disabled">Pilih Prodi</option>
+                                    <?php foreach ($prodi as $prd) : ?>
+                                    <option value="<?= $prd->kd_prodi ?>"><?= $prd->nama_prodi ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?= form_error('kd_prodi', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
                             <div class="form-group has-feedback">
                                 <input type="text" class="form-control" placeholder="Username" name="username"
                                     id="username" value="<?= set_value('username'); ?>">

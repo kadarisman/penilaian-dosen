@@ -46,7 +46,7 @@
                                             <td>
                                                 <a href="<?= base_url('edit-user-1/' . $bpm->id_user) ?>"
                                                     class="badge progress-bar-primary">Edit</a>
-                                                <a href="<?= base_url('user/User/delete_user/' . $bpm->id_user); ?>"
+                                                <a href="<?= base_url('user/User/delete_user_bpm/' . $bpm->id_user); ?>"
                                                     class="badge progress-bar-danger"
                                                     onclick="return confirm('Yakin..?');">Hapus</a>
                                             </td>

@@ -6,22 +6,12 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Tambah User Mahasiswa</h3>
+                        <h3 class="box-title">Tambah User Dosen</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
                     <form action="" method="post">
                         <div class="box-body">
-                            <div class="form-group">
-                                <select class="form-control border border-dark" tabindex="-1" aria-hidden="true"
-                                    name="kd_prodi">
-                                    <option selected="true" disabled="disabled">Pilih Prodi</option>
-                                    <?php foreach ($prodi as $prd) : ?>
-                                    <option value="<?= $prd->kd_prodi ?>"><?= $prd->nama_prodi ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <?= form_error('kd_prodi', '<small class="text-danger pl-3">', '</small>'); ?>
-                            </div>
                             <div class="form-group has-feedback">
                                 <input type="text" class="form-control" placeholder="Username" name="username"
                                     id="username" value="<?= set_value('username'); ?>">
@@ -45,7 +35,7 @@
                             </div>
                             <div class="social-auth-links text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                <a href="<?= base_url('user-mahasiswa') ?>" class="btn btn-primary">Batal</a>
+                                <a href="<?= base_url('user-dosen-prodi') ?>" class="btn btn-primary">Batal</a>
                                 <!-- <a href="#" class="btn btn-block btn-success">Daftar</a> -->
                             </div>
                         </div>

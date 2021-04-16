@@ -6,7 +6,7 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title" id="judul">Semua user Mahasiswa</h3>
-                            <a href="<?= base_url('tambah-user-mahasiswa') ?>"
+                            <a href="<?= base_url('tambah-user-mahasiswa-prodi') ?>"
                                 class="badge progress-bar-primary">Tambah</a>
                             <br>
                         </div>
@@ -21,8 +21,8 @@
                                             <th>Username</th>
                                             <th>Level</th>
                                             <th>Nama</th>
-                                            <th>Prodi</th>
                                             <th>Alamat</th>
+                                            <th>Prodi</th>
                                             <th>Ditambahkan</th>
                                             <th>Diubah</th>
                                             <th>Aksi</th>
@@ -33,7 +33,7 @@
                                         ?>
                                         <?php
                                         $no = 0;
-                                        foreach ($mahasiswa as $mhs) :
+                                        foreach ($mahasiswa_prodi as $mhs) :
                                             $no++ ?>
                                         <tr>
                                             <td><?= $no ?></td>
@@ -45,16 +45,16 @@
                                                         echo $mhs->nama_mahasiswa;
                                                     } ?>
                                             </td>
-                                            <td><?php if ($mhs->nama_prodi == null) {
-                                                        echo '<span class="text-danger">Belum terdata</span>';
-                                                    } else {
-                                                        echo $mhs->nama_prodi;
-                                                    } ?>
-                                            </td>
                                             <td><?php if ($mhs->alamat_mahasiswa == null) {
                                                         echo '<span class="text-danger">Belum terdata</span>';
                                                     } else {
                                                         echo $mhs->alamat_mahasiswa;
+                                                    } ?>
+                                            </td>
+                                            <td><?php if ($mhs->nama_prodi == null) {
+                                                        echo '<span class="text-danger">Belum terdata</span>';
+                                                    } else {
+                                                        echo $mhs->nama_prodi;
                                                     } ?>
                                             </td>
                                             <td><?= $mhs->created; ?></td>
@@ -66,13 +66,13 @@
                                                     ?>
                                             </td>
                                             <td>
-                                                <a href="<?= base_url('edit-user-2/' . $mhs->id_user) ?>"
+                                                <a href="<?= base_url('edit-user-1-prodi/' . $mhs->id_user) ?>"
                                                     class="badge progress-bar-primary">Edit</a>
-                                                <a href="<?= base_url('user/User/delete_user_mahasiswa/' . $mhs->id_user); ?>"
+                                                <a href="<?= base_url('user/User/delete_user_mahasiswa_prodi/' . $mhs->id_user); ?>"
                                                     class="badge progress-bar-danger"
                                                     onclick="return confirm('Yakin..?');">Hapus</a>
                                                 <?php if ($mhs->nama_mahasiswa == null) { ?>
-                                                <a href="<?= base_url('tambah-data-mahasiswa/' . $mhs->id_user) ?>"
+                                                <a href="<?= base_url('tambah-data-mahasiswa-prodi/' . $mhs->id_user) ?>"
                                                     class="badge progress-bar-success">Tambah data</a>
                                                 <?php } ?>
                                             </td>

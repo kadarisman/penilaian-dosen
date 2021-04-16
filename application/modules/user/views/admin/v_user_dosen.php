@@ -65,13 +65,14 @@
                                                     ?>
                                             </td>
                                             <td>
-                                                <a href="<?= base_url('edit-user-1/' . $dsn->id_user) ?>"
+                                                <a href="<?= base_url('edit-user-2/' . $dsn->id_user) ?>"
                                                     class="badge progress-bar-primary">Edit</a>
-                                                <a href="<?= base_url('user/User/delete_user/' . $dsn->username); ?>"
+                                                <a href="<?= base_url('user/User/delete_user_dosen/' . $dsn->id_user); ?>"
                                                     class="badge progress-bar-danger"
                                                     onclick="return confirm('Yakin..?');">Hapus</a>
                                                 <?php if ($dsn->nama_dosen == null) { ?>
-                                                <a href="" class="badge progress-bar-success">Tambah data</a>
+                                                <a href="<?= base_url('tambah-data-dosen/' . $dsn->id_user) ?>"
+                                                    class="badge progress-bar-success">Tambah data</a>
                                                 <?php } ?>
                                             </td>
                                         </tr>

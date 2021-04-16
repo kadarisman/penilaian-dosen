@@ -194,22 +194,22 @@
             <?php } else if (($user_session['level'] == 'prodi')) { ?>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-database"></i>
+                    <i class="fa fa-users"></i>
                     <span>Pengguna</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= base_url('Dosen') ?>"><i class="fa fa-circle-o"></i> Dosen
+                    <li><a href="<?= base_url('user-dosen-prodi') ?>"><i class="fa fa-circle-o"></i> Dosen
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red"><?= $total_user_dosen ?></small>
+                                <small class="label pull-right bg-red"><?= $total_user_dosen_prodi ?></small>
                             </span>
                         </a>
                     </li>
-                    <li><a href="<?= base_url('Mahasiswa') ?>"><i class="fa fa-circle-o"></i> Mahasiswa
+                    <li><a href="<?= base_url('user-mahasiswa-prodi') ?>"><i class="fa fa-circle-o"></i> Mahasiswa
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red"><?= $total_user_mahasiswa; ?></small>
+                                <small class="label pull-right bg-red"><?= $total_user_mahasiswa_prodi; ?></small>
                             </span>
                         </a>
                     </li>
@@ -217,34 +217,28 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-database"></i>
                     <span>Master Data</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= base_url('dosen') ?>"><i class="fa fa-circle-o"></i>Data Dosen
+                    <li><a href="<?= base_url('dosen-prodi') ?>"><i class="fa fa-circle-o"></i>Data Dosen
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red"><?= $total_dosen ?></small>
+                                <small class="label pull-right bg-red"><?= $total_dosen_prodi ?></small>
                             </span>
                         </a>
                     </li>
-                    <li><a href="<?= base_url('mahasiswa') ?>"><i class="fa fa-circle-o"></i>Data Mahasiswa
+                    <li><a href="<?= base_url('mahasiswa-prodi') ?>"><i class="fa fa-circle-o"></i>Data Mahasiswa
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red"><?= $total_mahasiswa; ?></small>
+                                <small class="label pull-right bg-red"><?= $total_mahasiswa_prodi; ?></small>
                             </span>
                         </a>
                     </li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Data Pertanyaan
+                    <li><a href="<?= base_url('matakuliah-prodi') ?>"><i class="fa fa-circle-o"></i> Data Matakuliah
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red">12</small>
-                            </span>
-                        </a>
-                    </li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Data Matakuliah
-                            <span class="pull-right-container">
-                                <small class="label pull-right bg-red">12</small>
+                                <small class="label pull-right bg-red"><?= $total_matakuliah_prodi; ?></small>
                             </span>
                         </a>
                     </li>

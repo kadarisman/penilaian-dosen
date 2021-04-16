@@ -25,9 +25,6 @@
                                 <select class="form-control border border-dark" tabindex="-1" aria-hidden="true"
                                     name="level">
                                     <option value="<?= $user1->level ?>"><?= $user1->level ?></option>
-                                    <option value="admin">Admin</option>
-                                    <option value="BPM">BPM</option>
-                                    <option value="prodi">Prodi</option>
                                     <option value="dosen">Dosen</option>
                                     <option value="mahasiswa">Mahasiswa</option>
 
@@ -35,20 +32,10 @@
                             </div>
                             <div class="social-auth-links text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                <?php if ($user1->level == 'admin') { ?>
-                                <a href="<?= base_url('admin') ?>" class="btn btn-primary">Batal</a>
-
-                                <?php } else if ($user1->level == 'BPM') { ?>
-                                <a href="<?= base_url('BPM') ?>" class="btn btn-primary">Batal</a>
-
-                                <?php } else if ($user1->level == 'dosen') { ?>
-                                <a href="<?= base_url('user-dosen') ?>" class="btn btn-primary">Batal</a>
-
-                                <?php } else if ($user1->level == 'mahasiswa') { ?>
-                                <a href="<?= base_url('user-mahasiswa') ?>" class="btn btn-primary">Batal</a>
-
+                                <?php if ($user1->level == 'mahasiswa') { ?>
+                                <a href="<?= base_url('user-mahasiswa-prodi') ?>" class="btn btn-primary">Batal</a>
                                 <?php } else { ?>
-                                <a href="<?= base_url('user-prodi') ?>" class="btn btn-primary">Batal</a>
+                                <a href="<?= base_url('user-dosen-prodi') ?>" class="btn btn-primary">Batal</a>
                                 <?php } ?>
                                 <!-- <a href="#" class="btn btn-block btn-success">Daftar</a> -->
                             </div>

@@ -40,7 +40,8 @@ class Login extends CI_Controller
             if (password_verify($password, $user['password'])) {
                 $data = [
                     'username' => $user['username'],
-                    'level' => $user['level']
+                    'level' => $user['level'],
+                    'kd_prodi' => $user['kd_prodi']
                 ];
                 $this->session->set_userdata($data);
                 if ($user['level'] == 'admin' || $user['level'] == 'BPM' || $user['level'] == 'prodi' || $user['level'] == 'dosen' || $user['level'] == 'mahasiswa') {

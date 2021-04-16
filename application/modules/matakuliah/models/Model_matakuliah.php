@@ -8,12 +8,29 @@ class Model_matakuliah extends CI_Model
     {
         return $this->db->count_all_results('matakuliah');
     }
+    public function count_matakuliah_prodi()
+    {
+        $prodi = $this->session->userdata('kd_prodi');
+        $this->db->from('matakuliah');
+        $this->db->where('kd_prodi', $prodi);
+        return $this->db->count_all_results();
+    }
     public function get_all_matakuliah()
     {
         $this->db->select('*');
         $this->db->from('matakuliah');
         $this->db->join('prodi', 'prodi.kd_prodi=matakuliah.kd_prodi', 'left');
         $this->db->order_by('nama_prodi', 'asc');
+        return $this->db->get()->result();
+    }
+    public function get_all_matakuliah_prodi()
+    {
+        $prodi = $this->session->userdata('kd_prodi');
+        $this->db->select('*');
+        $this->db->from('matakuliah');
+        $this->db->join('prodi', 'prodi.kd_prodi = matakuliah.kd_prodi', 'left');
+        $where = array('matakuliah.kd_prodi' => $prodi);
+        $this->db->where($where);
         return $this->db->get()->result();
     }
     public function add_matakuliah($data)
@@ -33,5 +50,9 @@ class Model_matakuliah extends CI_Model
         $this->db->join('prodi', 'prodi.kd_prodi=matakuliah.kd_prodi', 'left');
         $this->db->where('kd_matakuliah', $kd_matakuliah);
         return $this->db->get()->row();
+    }
+    public function delete_matakuliah($kd_matakuliah)
+    {
+        $this->db->delete('matakuliah', ['kd_matakuliah' => $kd_matakuliah]);
     }
 }

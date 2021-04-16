@@ -5,8 +5,8 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Semua user Prodi</h3>
-                            <a href="<?= base_url('tambah-user-prodi') ?>" class="badge progress-bar-primary">Tambah</a>
+                            <h3 class="box-title" id="judul">Data Semua Dosen</h3><br>
+                            <a href="<?= base_url('tambah-dosen') ?>" class="badge progress-bar-primary">Tambah Data</a>
                             <br>
                         </div>
                         <!-- /.box-header -->
@@ -17,40 +17,34 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Username</th>
-                                            <th>Level</th>
+                                            <th>Foto</th>
+                                            <th>NIDN</th>
+                                            <th>Nama</th>
+                                            <th>Alamat</th>
                                             <th>Prodi</th>
-                                            <th>Fakultas</th>
-                                            <th>Ditambahkan</th>
-                                            <th>Diubah</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php //var_dump($all_prodiin); 
+                                        <?php //var_dump($all_dsnin); 
                                         ?>
                                         <?php
                                         $no = 0;
-                                        foreach ($prodi as $prd) :
+                                        foreach ($dosen as $dsn) :
                                             $no++ ?>
                                         <tr>
                                             <td><?= $no ?></td>
-                                            <td><?= $prd->username; ?></td>
-                                            <td><?= $prd->level; ?></td>
-                                            <td><?= $prd->nama_prodi; ?></td>
-                                            <td><?= $prd->nama_fakultas; ?></td>
-                                            <td><?= $prd->created; ?></td>
-                                            <td><?php if ($prd->modifed == null) {
-                                                        echo 'Belum pernah';
-                                                    } else {
-                                                        echo $prd->modifed;
-                                                    }
-                                                    ?>
+                                            <td><img src="<?= base_url('assets/'); ?>img/users/default.png"
+                                                    class="img-rounded" width="40" height="40">
                                             </td>
+                                            <td><?= $dsn->NIDN; ?></td>
+                                            <td><?= $dsn->nama_dosen; ?></td>
+                                            <td><?= $dsn->alamat_dosen; ?></td>
+                                            <td><?= $dsn->nama_prodi; ?></td>
                                             <td>
-                                                <a href="<?= base_url('edit-user-2/' . $prd->id_user) ?>"
+                                                <a href="<?= base_url('edit-dosen/' . $dsn->NIDN) ?>"
                                                     class="badge progress-bar-primary">Edit</a>
-                                                <a href="<?= base_url('user/User/delete_user_prodi/' . $prd->id_user); ?>"
+                                                <a href="<?= base_url('dosen/Dosen/delete_dosen/' . $dsn->NIDN); ?>"
                                                     class="badge progress-bar-danger"
                                                     onclick="return confirm('Yakin..?');">Hapus</a>
                                             </td>

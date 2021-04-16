@@ -8,12 +8,29 @@ class Model_mahasiswa extends CI_Model
     {
         return $this->db->count_all_results('mahasiswa');
     }
+    public function count_mahasiswa_prodi()
+    {
+        $prodi = $this->session->userdata('kd_prodi');
+        $this->db->from('mahasiswa');
+        $this->db->where('kd_prodi', $prodi);
+        return $this->db->count_all_results();
+    }
     public function get_all_mahasiswa()
     {
         $this->db->select('*');
         $this->db->from('mahasiswa');
         $this->db->join('prodi', 'prodi.kd_prodi=mahasiswa.kd_prodi', 'left');
         $this->db->order_by('nama_prodi', 'asc');
+        return $this->db->get()->result();
+    }
+    public function get_all_mahasiswa_prodi()
+    {
+        $prodi = $this->session->userdata('kd_prodi');
+        $this->db->select('*');
+        $this->db->from('mahasiswa');
+        $this->db->join('prodi', 'prodi.kd_prodi = mahasiswa.kd_prodi', 'left');
+        $where = array('mahasiswa.kd_prodi' => $prodi);
+        $this->db->where($where);
         return $this->db->get()->result();
     }
 
@@ -33,5 +50,9 @@ class Model_mahasiswa extends CI_Model
         $this->db->join('prodi', 'prodi.kd_prodi=mahasiswa.kd_prodi', 'left');
         $this->db->where('NPM', $NPM);
         return $this->db->get()->row();
+    }
+    public function delete_mahasiswa($NPM)
+    {
+        $this->db->delete('mahasiswa', ['NPM' => $NPM]);
     }
 }

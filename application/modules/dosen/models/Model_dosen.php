@@ -20,6 +20,8 @@ class Model_dosen extends CI_Model
         $this->db->select('*');
         $this->db->from('dosen');
         $this->db->join('prodi', 'prodi.kd_prodi=dosen.kd_prodi', 'left');
+        $this->db->join('user', 'user.username = dosen.NIDN', 'left');
+        $this->db->join('fakultas', 'fakultas.kd_fakultas = prodi.kd_fakultas', 'left');
         $this->db->order_by('nama_prodi', 'asc');
         return $this->db->get()->result();
     }
@@ -29,6 +31,8 @@ class Model_dosen extends CI_Model
         $this->db->select('*');
         $this->db->from('dosen');
         $this->db->join('prodi', 'prodi.kd_prodi = dosen.kd_prodi', 'left');
+        $this->db->join('user', 'user.username = dosen.NIDN', 'left');
+        $this->db->join('fakultas', 'fakultas.kd_fakultas=prodi.kd_fakultas', 'left');
         $where = array('dosen.kd_prodi' => $prodi);
         $this->db->where($where);
         return $this->db->get()->result();

@@ -5,10 +5,12 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Data Semua Pertanyaan</h3><br>
                             <a href="<?= base_url('tambah-pertanyaan') ?>" class="badge progress-bar-primary">Tambah
                                 Data</a>
                             <br>
+                            <center>
+                                <h3 class="box-title" id="judul">Daftar Pertanyaan Penilaian Kinerja Dosen</h3><br>
+                            </center>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">

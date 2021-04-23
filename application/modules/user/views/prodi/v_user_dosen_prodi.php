@@ -5,10 +5,13 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Semua user Dosen</h3>
                             <a href="<?= base_url('tambah-user-dosen-prodi') ?>"
                                 class="badge progress-bar-primary">Tambah</a>
                             <br>
+                            <center>
+                                <h3 class="box-title" id="judul">Semua Pengguna Level Dosen
+                                    <?php echo $user_prodi['nama_prodi']; ?></h3>
+                            </center>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -24,6 +27,7 @@
                                             <th>Prodi</th>
                                             <th>Ditambahkan</th>
                                             <th>Diubah</th>
+                                            <th>Kedosenan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -62,6 +66,12 @@
                                                         echo $dsn->modifed;
                                                     }
                                                     ?>
+                                            </td>
+                                            <td><?php if ($dsn->nama_dosen == null) { ?>
+                                                <i class="fa fa-fw fa-close" style="color: red;"></i>
+                                                <?php } else { ?>
+                                                <i class="fa fa-fw fa-check" style="color: green;"></i>
+                                                <?php } ?>
                                             </td>
                                             <td>
                                                 <a href="<?= base_url('edit-user-1-prodi/' . $dsn->id_user) ?>"

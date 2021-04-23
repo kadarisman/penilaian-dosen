@@ -141,4 +141,11 @@ class Fakultas  extends CI_Controller
             redirect('fakultas');
         }
     }
+    //delete data
+    public function delete_fakultas($kd_fakultas)
+    {
+        $this->Model_fakultas->delete_fakultas($kd_fakultas);
+        $this->session->set_flashdata('message1', '<div class="alert alert-success" role="alert" id="msg">Berhasil di Hapus</div>');
+        redirect('fakultas');
+    }
 }

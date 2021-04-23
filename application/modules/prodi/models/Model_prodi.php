@@ -34,4 +34,8 @@ class Model_prodi extends CI_Model
         $this->db->where('kd_prodi', $kd_prodi);
         return $this->db->get()->row();
     }
+    public function delete_prodi($kd_prodi)
+    {
+        $this->db->delete('prodi', ['kd_prodi' => $kd_prodi]);
+    }
 }

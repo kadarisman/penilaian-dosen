@@ -5,10 +5,12 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Semua user Mahasiswa</h3>
                             <a href="<?= base_url('tambah-user-mahasiswa') ?>"
                                 class="badge progress-bar-primary">Tambah</a>
                             <br>
+                            <center>
+                                <h3 class="box-title" id="judul">Semua Pengguna Level Mahasiswa</h3>
+                            </center>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -25,6 +27,7 @@
                                             <th>Alamat</th>
                                             <th>Ditambahkan</th>
                                             <th>Diubah</th>
+                                            <th>kemahasiswaan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -64,6 +67,12 @@
                                                         echo $mhs->modifed;
                                                     }
                                                     ?>
+                                            </td>
+                                            <td><?php if ($mhs->nama_mahasiswa == null) { ?>
+                                                <i class="fa fa-fw fa-close" style="color: red;"></i>
+                                                <?php } else { ?>
+                                                <i class="fa fa-fw fa-check" style="color: green;"></i>
+                                                <?php } ?>
                                             </td>
                                             <td>
                                                 <a href="<?= base_url('edit-user-2/' . $mhs->id_user) ?>"

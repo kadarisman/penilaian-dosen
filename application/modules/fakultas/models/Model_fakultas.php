@@ -28,4 +28,8 @@ class Model_fakultas extends CI_Model
         $this->db->where('kd_fakultas', $kd_fakultas);
         return $this->db->get()->row();
     }
+    public function delete_fakultas($kd_fakultas)
+    {
+        $this->db->delete('fakultas', ['kd_fakultas' => $kd_fakultas]);
+    }
 }

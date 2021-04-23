@@ -20,6 +20,8 @@ class Model_mahasiswa extends CI_Model
         $this->db->select('*');
         $this->db->from('mahasiswa');
         $this->db->join('prodi', 'prodi.kd_prodi=mahasiswa.kd_prodi', 'left');
+        $this->db->join('user', 'user.username=mahasiswa.NPM', 'left');
+        $this->db->join('fakultas', 'fakultas.kd_fakultas=prodi.kd_fakultas', 'left');
         $this->db->order_by('nama_prodi', 'asc');
         return $this->db->get()->result();
     }
@@ -29,6 +31,8 @@ class Model_mahasiswa extends CI_Model
         $this->db->select('*');
         $this->db->from('mahasiswa');
         $this->db->join('prodi', 'prodi.kd_prodi = mahasiswa.kd_prodi', 'left');
+        $this->db->join('user', 'user.username = mahasiswa.NPM', 'left');
+        $this->db->join('fakultas', 'fakultas.kd_fakultas=prodi.kd_fakultas', 'left');
         $where = array('mahasiswa.kd_prodi' => $prodi);
         $this->db->where($where);
         return $this->db->get()->result();

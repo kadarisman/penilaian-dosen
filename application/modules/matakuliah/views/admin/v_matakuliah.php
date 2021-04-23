@@ -5,10 +5,12 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Data Semua Matakuliah</h3><br>
                             <a href="<?= base_url('tambah-matakuliah') ?>" class="badge progress-bar-primary">Tambah
                                 Data</a>
                             <br>
+                            <center>
+                                <h3 class="box-title" id="judul">Daftar Matakuliah</h3>
+                            </center>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -22,6 +24,7 @@
                                             <th>Matakuliah</th>
                                             <th>SKS</th>
                                             <th>Prodi</th>
+                                            <th>Fakultas</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -38,6 +41,7 @@
                                             <td><?= $mk->nama_matakuliah; ?></td>
                                             <td><?= $mk->sks; ?></td>
                                             <td><?= $mk->nama_prodi; ?></td>
+                                            <td><?= $mk->nama_fakultas; ?></td>
                                             <td>
                                                 <a href="<?= base_url('edit-matakuliah/' . $mk->kd_matakuliah) ?>"
                                                     class="badge progress-bar-primary">Edit</a>

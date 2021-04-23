@@ -116,19 +116,19 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= base_url('Prodi') ?>"><i class="fa fa-circle-o"></i> Prodi
+                    <li><a href="<?= base_url('user-prodi') ?>"><i class="fa fa-circle-o"></i> Prodi
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-red"><?= $total_user_prodi; ?></small>
                             </span>
                         </a>
                     </li>
-                    <li><a href="<?= base_url('Dosen') ?>"><i class="fa fa-circle-o"></i> Dosen
+                    <li><a href="<?= base_url('user-dosen') ?>"><i class="fa fa-circle-o"></i> Dosen
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-red"><?= $total_user_dosen ?></small>
                             </span>
                         </a>
                     </li>
-                    <li><a href="<?= base_url('Mahasiswa') ?>"><i class="fa fa-circle-o"></i> Mahasiswa
+                    <li><a href="<?= base_url('user-mahasiswa') ?>"><i class="fa fa-circle-o"></i> Mahasiswa
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-red"><?= $total_user_mahasiswa; ?></small>
                             </span>
@@ -145,45 +145,27 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= base_url('Prodi') ?>"><i class="fa fa-circle-o"></i>Data Fakultas
+                    <li><a href="<?= base_url('prodi') ?>"><i class="fa fa-circle-o"></i>Data Prodi
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-red"><?= $total_prodi; ?></small>
                             </span>
                         </a>
                     </li>
-                    <li><a href="<?= base_url('Prodi') ?>"><i class="fa fa-circle-o"></i>Data Prodi
-                            <span class="pull-right-container">
-                                <small class="label pull-right bg-red"><?= $total_prodi; ?></small>
-                            </span>
-                        </a>
-                    </li>
-                    <li><a href="<?= base_url('Dosen') ?>"><i class="fa fa-circle-o"></i>Data Dosen
+                    <li><a href="<?= base_url('dosen') ?>"><i class="fa fa-circle-o"></i>Data Dosen
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-red"><?= $total_dosen ?></small>
                             </span>
                         </a>
                     </li>
-                    <li><a href="<?= base_url('Mahasiswa') ?>"><i class="fa fa-circle-o"></i>Data Mahasiswa
+                    <li><a href="<?= base_url('mahasiswa') ?>"><i class="fa fa-circle-o"></i>Data Mahasiswa
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-red"><?= $total_mahasiswa; ?></small>
                             </span>
                         </a>
                     </li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Data Pertanyaan
+                    <li><a href="<?= base_url('pertanyaan') ?>"><i class="fa fa-circle-o"></i> Data Pertanyaan
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red">12</small>
-                            </span>
-                        </a>
-                    </li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Data Matakuliah
-                            <span class="pull-right-container">
-                                <small class="label pull-right bg-red">12</small>
-                            </span>
-                        </a>
-                    </li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i>Data Jawaban
-                            <span class="pull-right-container">
-                                <small class="label pull-right bg-red">12</small>
+                                <small class="label pull-right bg-red"><?= $total_pertanyaan; ?></small>
                             </span>
                         </a>
                     </li>

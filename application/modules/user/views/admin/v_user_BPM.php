@@ -5,9 +5,11 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Semua BPM</h3>
                             <a href="<?= base_url('tambah-user-BPM') ?>" class="badge progress-bar-primary">Tambah</a>
                             <br>
+                            <center>
+                                <h3 class="box-title" id="judul">Semua Pengguna Level BPM</h3>
+                            </center>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">

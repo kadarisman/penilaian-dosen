@@ -30,7 +30,7 @@
                                     <ul class="menu">
                                         <li>
                                             <!-- Task item -->
-                                            <a href="#">
+                                            <a href="<?= base_url('profil') ?>">
                                                 <h3>
                                                     Profile
                                                 </h3>

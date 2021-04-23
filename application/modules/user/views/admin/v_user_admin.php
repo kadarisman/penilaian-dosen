@@ -5,8 +5,10 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Semua Admin</h3>
                             <a href="<?= base_url('tambah-user-admin') ?>" class="badge progress-bar-primary">Tambah</a>
+                            <center>
+                                <h3 class="box-title" id="judul">Semua Pengguna Level Admin</h3>
+                            </center>
                             <br>
                         </div>
                         <!-- /.box-header -->

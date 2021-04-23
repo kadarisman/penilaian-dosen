@@ -5,10 +5,12 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Data Semua Fakultas</h3><br>
                             <a href="<?= base_url('tambah-fakultas') ?>" class="badge progress-bar-primary">Tambah
                                 Data</a>
                             <br>
+                            <center>
+                                <h3 class="box-title" id="judul">Daftar Fakultas Universitas Almuslim Bireuen</h3>
+                            </center>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -37,7 +39,7 @@
                                             <td>
                                                 <a href="<?= base_url('edit-fakultas/' . $fks->kd_fakultas) ?>"
                                                     class="badge progress-bar-primary">Edit</a>
-                                                <a href="<?= base_url('user/User/delete_user/' . $fks->kd_fakultas); ?>"
+                                                <a href="<?= base_url('fakultas/Fakultas/delete_fakultas/' . $fks->kd_fakultas); ?>"
                                                     class="badge progress-bar-danger"
                                                     onclick="return confirm('Yakin..?');">Hapus</a>
                                             </td>

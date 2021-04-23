@@ -62,7 +62,7 @@ class Model_user extends CI_Model
         $this->db->select('*');
         $this->db->from('user')->where('level', 'dosen');
         $this->db->join('dosen', 'dosen.NIDN = user.username', 'left');
-        $this->db->join('prodi', 'prodi.kd_prodi = dosen.kd_prodi', 'left');
+        $this->db->join('prodi', 'prodi.kd_prodi = user.kd_prodi', 'left');
         $this->db->order_by('nama_prodi', 'asc');
         return $this->db->get()->result();
     }
@@ -203,6 +203,7 @@ class Model_user extends CI_Model
         $this->db->from('user');
         $this->db->where('username', $this->session->userdata('username'));
         $this->db->join('prodi', 'prodi.kd_prodi = user.kd_prodi');
+        $this->db->join('fakultas', 'fakultas.kd_fakultas = prodi.kd_fakultas', 'left');
         return $this->db->get()->row_array();
     }
 
@@ -212,6 +213,7 @@ class Model_user extends CI_Model
         $this->db->from('user');
         $this->db->where('username', $this->session->userdata('username'));
         $this->db->join('dosen', 'dosen.NIDN = user.username');
+        $this->db->join('prodi', 'prodi.kd_prodi = user.kd_prodi', 'left');
         return $this->db->get()->row_array();
     }
 
@@ -221,6 +223,7 @@ class Model_user extends CI_Model
         $this->db->from('user');
         $this->db->where('username', $this->session->userdata('username'));
         $this->db->join('mahasiswa', 'mahasiswa.NPM = user.username');
+        $this->db->join('prodi', 'prodi.kd_prodi = user.kd_prodi', 'left');
         return $this->db->get()->row_array();
     }
 }

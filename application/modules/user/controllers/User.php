@@ -52,7 +52,48 @@ class User extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    //for all user vie profil
+    public function profil()
+    {
+        $data['title'] = 'Profil';
+        //get data for session        
+        $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+        $data['user_dosen'] = $this->Model_user->user_dosen_get_data(); //--//
+        $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--//  
 
+        //admin count user
+        $data['total_user_mahasiswa'] = $this->Model_user->count_mahasiswa();
+        $data['total_user_prodi'] = $this->Model_user->count_prodi();
+        $data['total_user_dosen'] = $this->Model_user->count_dosen();
+        $data['total_user_bpm'] = $this->Model_user->count_bpm();
+        $data['total_user_admin'] = $this->Model_user->count_admin();
+
+        //prodi count user
+        $data['total_user_dosen_prodi'] = $this->Model_user->count_dosen_prodi();
+        $data['total_user_mahasiswa_prodi'] = $this->Model_user->count_mahasiswa_prodi();
+
+        //admin count master data
+        $data['total_fakultas'] = $this->Model_fakultas->count_fakultas();
+        $data['total_prodi'] = $this->Model_prodi->count_prodi();
+        $data['total_dosen'] = $this->Model_dosen->count_dosen();
+        $data['total_mahasiswa'] = $this->Model_mahasiswa->count_mahasiswa();
+        $data['total_pertanyaan'] = $this->Model_pertanyaan->count_pertanyaan();
+        $data['total_matakuliah'] = $this->Model_matakuliah->count_matakuliah();
+        //$data['selectProdi'] = $this->Model_user->select_where('prodi', 'nama_prodi');
+        // $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
+
+        //prodi count master data
+        $data['total_dosen_prodi'] = $this->Model_dosen->count_dosen_prodi();
+        $data['total_mahasiswa_prodi'] = $this->Model_mahasiswa->count_mahasiswa_prodi();
+        $data['total_matakuliah_prodi'] = $this->Model_matakuliah->count_matakuliah_prodi();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('v_profil', $data);
+        $this->load->view('templates/footer');
+    }
 
     //admin methods
     //read data
@@ -478,6 +519,75 @@ class User extends CI_Controller
         }
     }
 
+    public function tambah_akun_dosen_takterdata($NIDN)
+    {
+
+        $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
+            'is_unique' => 'Username sudah terdaftar..!',
+            'required' => 'Username tidak boleh kosong..!',
+        ]);
+
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]|max_length[8]|matches[password2]', [
+            'matches' => 'Password tidak sama..!',
+            'min_length' => 'Password terlalu pendek minimal 3 karakter',
+            'max_length' => 'Password terlalu panjang maksimal 10 karakter',
+            'required' => 'Password tidak boleh kosong..!'
+        ]);
+        $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password]', [
+            'matches' => 'Ulangi password tidak sama',
+            'required' => 'Ulangi password tidak boleh kosong'
+        ]);
+        $this->form_validation->set_rules('kd_prodi', 'Kd_prodi', 'required|trim', [
+            'required' => 'Kode Prodi harus dipilih'
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Tambah user Dosen';
+            //get data for session        
+            $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+            $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+            $data['user_dosen'] = $this->Model_user->user_dosen_get_data(); //--//
+            $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--//  
+
+            //get user by id
+            $data['dosen'] = $this->Model_dosen->get_dosen_by_id($NIDN);
+
+
+            //count user
+            $data['total_user_mahasiswa'] = $this->Model_user->count_mahasiswa();
+            $data['total_user_prodi'] = $this->Model_user->count_prodi();
+            $data['total_user_dosen'] = $this->Model_user->count_dosen();
+            $data['total_user_bpm'] = $this->Model_user->count_bpm();
+            $data['total_user_admin'] = $this->Model_user->count_admin();
+            $data['dosen'] = $this->Model_dosen->get_all_dosen();
+
+            //count master data
+            $data['total_fakultas'] = $this->Model_fakultas->count_fakultas();
+            $data['total_prodi'] = $this->Model_prodi->count_prodi();
+            $data['total_dosen'] = $this->Model_dosen->count_dosen();
+            $data['total_mahasiswa'] = $this->Model_mahasiswa->count_mahasiswa();
+            $data['total_pertanyaan'] = $this->Model_pertanyaan->count_pertanyaan();
+            $data['total_matakuliah'] = $this->Model_matakuliah->count_matakuliah();
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('prodi/tambah_user/v_tambah_akun_dosen', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'username' => htmlspecialchars($this->input->post('username', true)),
+                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'kd_prodi' => htmlspecialchars($this->input->post('kd_prodi', true)),
+                'level' => 'dosen',
+                'created' => date('d-m-Y H:i:s')
+            ];
+            $this->Model_user->add_user($data, 'user');
+            $this->session->set_flashdata('message1', '<div class="alert alert-success" role="alert" id="msg">Berhasil di Tambah</div>');
+            redirect('user-dosen');
+        }
+    }
+
     public function tambah_user_mahasiswa()
     {
         $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
@@ -541,6 +651,78 @@ class User extends CI_Controller
             redirect('user-mahasiswa');
         }
     }
+
+    public function tambah_akun_mahasiswa_takterdata($NPM)
+    {
+
+        $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
+            'is_unique' => 'Username sudah terdaftar..!',
+            'required' => 'Username tidak boleh kosong..!',
+        ]);
+
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]|max_length[8]|matches[password2]', [
+            'matches' => 'Password tidak sama..!',
+            'min_length' => 'Password terlalu pendek minimal 3 karakter',
+            'max_length' => 'Password terlalu panjang maksimal 10 karakter',
+            'required' => 'Password tidak boleh kosong..!'
+        ]);
+        $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password]', [
+            'matches' => 'Ulangi password tidak sama',
+            'required' => 'Ulangi password tidak boleh kosong'
+        ]);
+        $this->form_validation->set_rules('kd_prodi', 'Kd_prodi', 'required|trim', [
+            'required' => 'Kode Prodi harus dipilih'
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Tambah user Mahasiswa';
+            //get data for session        
+            $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+            $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+            $data['user_dosen'] = $this->Model_user->user_dosen_get_data(); //--//
+            $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--//  
+
+            //get user by id
+            $data['mahasiswa'] = $this->Model_mahasiswa->get_mahasiswa_by_id($NPM);
+
+
+            //count user
+            $data['total_user_mahasiswa'] = $this->Model_user->count_mahasiswa();
+            $data['total_user_prodi'] = $this->Model_user->count_prodi();
+            $data['total_user_dosen'] = $this->Model_user->count_dosen();
+            $data['total_user_bpm'] = $this->Model_user->count_bpm();
+            $data['total_user_admin'] = $this->Model_user->count_admin();
+            $data['dosen'] = $this->Model_dosen->get_all_dosen();
+
+            //count master data
+            $data['total_fakultas'] = $this->Model_fakultas->count_fakultas();
+            $data['total_prodi'] = $this->Model_prodi->count_prodi();
+            $data['total_dosen'] = $this->Model_dosen->count_dosen();
+            $data['total_mahasiswa'] = $this->Model_mahasiswa->count_mahasiswa();
+            $data['total_pertanyaan'] = $this->Model_pertanyaan->count_pertanyaan();
+            $data['total_matakuliah'] = $this->Model_matakuliah->count_matakuliah();
+
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('prodi/tambah_user/v_tambah_akun_mahasiswa', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'username' => htmlspecialchars($this->input->post('username', true)),
+                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'kd_prodi' => htmlspecialchars($this->input->post('kd_prodi', true)),
+                'level' => 'mahasiswa',
+                'created' => date('d-m-Y H:i:s')
+            ];
+            $this->Model_user->add_user($data, 'user');
+            $this->session->set_flashdata('message1', '<div class="alert alert-success" role="alert" id="msg">Berhasil di Tambah</div>');
+            redirect('user-mahasiswa');
+        }
+    }
+
+
 
     //edit data
     public function edit_user1($id_user)
@@ -841,6 +1023,65 @@ class User extends CI_Controller
         }
     }
 
+    public function tambah_akun_dosen_takterdata_prodi($NIDN)
+    {
+
+        $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
+            'is_unique' => 'Username sudah terdaftar..!',
+            'required' => 'Username tidak boleh kosong..!',
+        ]);
+
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]|max_length[8]|matches[password2]', [
+            'matches' => 'Password tidak sama..!',
+            'min_length' => 'Password terlalu pendek minimal 3 karakter',
+            'max_length' => 'Password terlalu panjang maksimal 10 karakter',
+            'required' => 'Password tidak boleh kosong..!'
+        ]);
+        $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password]', [
+            'matches' => 'Ulangi password tidak sama',
+            'required' => 'Ulangi password tidak boleh kosong'
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Tambah user Dosen';
+            //get data for session        
+            $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+            $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+            $data['user_dosen'] = $this->Model_user->user_dosen_get_data(); //--//
+            $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--//  
+
+            //get user by id
+            $data['dosen'] = $this->Model_dosen->get_dosen_by_id($NIDN);
+
+
+            //count user
+            $data['total_user_mahasiswa_prodi'] = $this->Model_user->count_mahasiswa_prodi();
+            $data['total_user_dosen_prodi'] = $this->Model_user->count_dosen();
+
+            //count master data
+            $data['total_dosen_prodi'] = $this->Model_dosen->count_dosen_prodi();
+            $data['total_mahasiswa_prodi'] = $this->Model_mahasiswa->count_mahasiswa_prodi();
+            $data['total_matakuliah_prodi'] = $this->Model_matakuliah->count_matakuliah_prodi();
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('prodi/tambah_user/v_tambah_akun_dosen_prodi', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'username' => htmlspecialchars($this->input->post('username', true)),
+                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'kd_prodi' => $this->session->userdata('kd_prodi'),
+                'level' => 'dosen',
+                'created' => date('d-m-Y H:i:s')
+            ];
+            $this->Model_user->add_user($data, 'user');
+            $this->session->set_flashdata('message1', '<div class="alert alert-success" role="alert" id="msg">Berhasil di Tambah</div>');
+            redirect('user-dosen-prodi');
+        }
+    }
+
     public function tambah_user_mahasiswa_prodi()
     {
         $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
@@ -881,6 +1122,65 @@ class User extends CI_Controller
             $this->load->view('templates/topbar', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('prodi/tambah_user/v_tambah_user_mahasiswa_prodi', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'username' => htmlspecialchars($this->input->post('username', true)),
+                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'kd_prodi' => $this->session->userdata('kd_prodi'),
+                'level' => 'mahasiswa',
+                'created' => date('d-m-Y H:i:s')
+            ];
+            $this->Model_user->add_user($data, 'user');
+            $this->session->set_flashdata('message1', '<div class="alert alert-success" role="alert" id="msg">Berhasil di Tambah</div>');
+            redirect('user-mahasiswa-prodi');
+        }
+    }
+
+    public function tambah_akun_mahasiswa_takterdata_prodi($NPM)
+    {
+
+        $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
+            'is_unique' => 'Username sudah terdaftar..!',
+            'required' => 'Username tidak boleh kosong..!',
+        ]);
+
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]|max_length[8]|matches[password2]', [
+            'matches' => 'Password tidak sama..!',
+            'min_length' => 'Password terlalu pendek minimal 3 karakter',
+            'max_length' => 'Password terlalu panjang maksimal 10 karakter',
+            'required' => 'Password tidak boleh kosong..!'
+        ]);
+        $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password]', [
+            'matches' => 'Ulangi password tidak sama',
+            'required' => 'Ulangi password tidak boleh kosong'
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Tambah user Mahasiswa';
+            //get data for session        
+            $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+            $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+            $data['user_dosen'] = $this->Model_user->user_dosen_get_data(); //--//
+            $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--//  
+
+            //get user by id
+            $data['mahasiswa'] = $this->Model_mahasiswa->get_mahasiswa_by_id($NPM);
+
+
+            //count user
+            $data['total_user_mahasiswa_prodi'] = $this->Model_user->count_mahasiswa_prodi();
+            $data['total_user_dosen_prodi'] = $this->Model_user->count_dosen();
+
+            //count master data
+            $data['total_dosen_prodi'] = $this->Model_dosen->count_dosen_prodi();
+            $data['total_mahasiswa_prodi'] = $this->Model_mahasiswa->count_mahasiswa_prodi();
+            $data['total_matakuliah_prodi'] = $this->Model_matakuliah->count_matakuliah_prodi();
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('prodi/tambah_user/v_tambah_akun_mahasiswa_prodi', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [

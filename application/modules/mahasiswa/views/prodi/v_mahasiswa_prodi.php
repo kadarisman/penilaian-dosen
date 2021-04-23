@@ -5,11 +5,14 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Data Semua Mahasiswa</h3><br>
                             <a href="<?= base_url('tambah-mahasiswa-prodi') ?>"
                                 class="badge progress-bar-primary">Tambah
                                 Data</a>
                             <br>
+                            <center>
+                                <h3 class="box-title" id="judul">Daftar nama-nama Mahasiswa
+                                    <?php echo $user_prodi['nama_prodi']; ?></h3>
+                            </center>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -24,6 +27,9 @@
                                             <th>Nama</th>
                                             <th>Alamat</th>
                                             <th>Prodi</th>
+                                            <th>Fakultas</th>
+                                            <th>Status</th>
+                                            <th>Akun</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -43,12 +49,29 @@
                                             <td><?= $mhs->nama_mahasiswa; ?></td>
                                             <td><?= $mhs->alamat_mahasiswa; ?></td>
                                             <td><?= $mhs->nama_prodi; ?></td>
+                                            <td><?= $mhs->nama_fakultas; ?></td>
+                                            <td><?php if ($mhs->status == '1') {
+                                                        echo 'Aktif';
+                                                    } else {
+                                                        echo 'Tidak Aktif';
+                                                    } ?>
+                                            </td>
+                                            <td><?php if ($mhs->username == null) { ?>
+                                                <i class="fa fa-fw fa-close" style="color: red;"></i>
+                                                <?php } else { ?>
+                                                <i class="fa fa-fw fa-check" style="color: green;"></i>
+                                                <?php } ?>
+                                            </td>
                                             <td>
                                                 <a href="<?= base_url('edit-mahasiswa-prodi/' . $mhs->NPM) ?>"
                                                     class="badge progress-bar-primary">Edit</a>
                                                 <a href="<?= base_url('mahasiswa/Mahasiswa/delete_mahasiswa_prodi/' . $mhs->NPM); ?>"
                                                     class="badge progress-bar-danger"
                                                     onclick="return confirm('Yakin..?');">Hapus</a>
+                                                <?php if ($mhs->username == null) { ?>
+                                                <a href="<?= base_url('tambah-akun-mahasiswa-prodi/' . $mhs->NPM) ?>"
+                                                    class="badge progress-bar-success">Buat akun</a>
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                         <?php endforeach; ?>

@@ -6,6 +6,9 @@ $route['default_controller'] = "auth/Login";
 $route['Login'] = "auth/Login";
 $route['Dashboard'] = "user/User";
 
+//routes for get profil
+$route['profil'] = "user/User/profil";
+
 //routes for admin read data user
 $route['admin'] = "user/User/admin";
 $route['BPM'] = "user/User/user_BPM";
@@ -19,6 +22,8 @@ $route['tambah-user-BPM'] = "user/User/tambah_user_bpm";
 $route['tambah-user-prodi'] = "user/User/tambah_user_prodi";
 $route['tambah-user-dosen'] = "user/User/tambah_user_dosen";
 $route['tambah-user-mahasiswa'] = "user/User/tambah_user_mahasiswa";
+$route['tambah-akun-dosen/(:any)'] = "user/User/tambah_akun_dosen_takterdata/$1";
+$route['tambah-akun-mahasiswa/(:any)'] = "user/User/tambah_akun_mahasiswa_takterdata/$1";
 
 //routes for admin edit user admin, bpm, dosen, mahasiswa
 $route['edit-user-1/(:any)'] = "user/User/edit_user1/$1";
@@ -61,6 +66,8 @@ $route['user-mahasiswa-prodi'] = "user/User/user_mahasiswa_prodi";
 //routes for prodi add data user
 $route['tambah-user-dosen-prodi'] = "user/User/tambah_user_dosen_prodi";
 $route['tambah-user-mahasiswa-prodi'] = "user/User/tambah_user_mahasiswa_prodi";
+$route['tambah-akun-dosen-prodi/(:any)'] = "user/User/tambah_akun_dosen_takterdata_prodi/$1";
+$route['tambah-akun-mahasiswa-prodi/(:any)'] = "user/User/tambah_akun_mahasiswa_takterdata_prodi/$1";
 
 //routes for prodi edit user
 $route['edit-user-1-prodi/(:any)'] = "user/User/edit_user1_prodi/$1";

@@ -151,4 +151,11 @@ class Prodi  extends CI_Controller
             redirect('prodi');
         }
     }
+    //delete data
+    public function delete_prodi($kd_prodi)
+    {
+        $this->Model_prodi->delete_prodi($kd_prodi);
+        $this->session->set_flashdata('message1', '<div class="alert alert-success" role="alert" id="msg">Berhasil di Hapus</div>');
+        redirect('prodi');
+    }
 }

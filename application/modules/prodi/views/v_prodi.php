@@ -5,9 +5,11 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" id="judul">Data Semua Prodi</h3><br>
                             <a href="<?= base_url('tambah-prodi') ?>" class="badge progress-bar-primary">Tambah Data</a>
                             <br>
+                            <center>
+                                <h3 class="box-title" id="judul">Daftar Prodi Universitas Almuslim Bireuen</h3>
+                            </center>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -17,9 +19,10 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Kode Fakultas</th>
+                                            <th>Nama Fakultas</th>
                                             <th>Kode Prodi</th>
                                             <th>Nama Prodi</th>
-                                            <th>Fakultas</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -32,13 +35,14 @@
                                             $no++ ?>
                                         <tr>
                                             <td><?= $no ?></td>
+                                            <td><?= $prd->kd_fakultas; ?></td>
+                                            <td><?= $prd->nama_fakultas; ?></td>
                                             <td><?= $prd->kd_prodi; ?></td>
                                             <td><?= $prd->nama_prodi; ?></td>
-                                            <td><?= $prd->nama_fakultas; ?></td>
                                             <td>
                                                 <a href="<?= base_url('edit-prodi/' . $prd->kd_prodi) ?>"
                                                     class="badge progress-bar-primary">Edit</a>
-                                                <a href="<?= base_url('user/User/delete_user/' . $prd->kd_prodi); ?>"
+                                                <a href="<?= base_url('prodi/Prodi/delete_prodi/' . $prd->kd_prodi); ?>"
                                                     class="badge progress-bar-danger"
                                                     onclick="return confirm('Yakin..?');">Hapus</a>
                                             </td>

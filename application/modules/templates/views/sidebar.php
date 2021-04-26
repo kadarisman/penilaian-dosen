@@ -233,9 +233,17 @@
                 </ul>
             </li>
 
-            <!--untuk dosen dan mahasiswa-->
+            <!--untuk mahasiswa-->
+            <?php } else if (($user_session['level'] == 'mahasiswa')) { ?>
+            <li><a href="<?= base_url('nilai') ?>"><i class="fa fa-circle-o"></i>Data Nilai
+                    <span class="pull-right-container">
+                        <small class="label pull-right bg-red"><?= $total_nilai_mahasiswa; ?></small>
+                    </span>
+                </a>
+            </li>
+            <!--untuk dosen-->
             <?php } else { ?>
-            <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i>Data Jawaban
+            <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i>Data Nilai
                     <span class="pull-right-container">
                         <small class="label pull-right bg-red">12</small>
                     </span>

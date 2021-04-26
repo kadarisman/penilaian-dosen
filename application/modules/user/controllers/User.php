@@ -37,6 +37,7 @@ class User extends CI_Controller
         $data['total_mahasiswa'] = $this->Model_mahasiswa->count_mahasiswa();
         $data['total_pertanyaan'] = $this->Model_pertanyaan->count_pertanyaan();
         $data['total_matakuliah'] = $this->Model_matakuliah->count_matakuliah();
+        $data['total_nilai_mahasiswa'] = $this->Model_nilai->count_nilai_mahasiswa();
         //$data['selectProdi'] = $this->Model_user->select_where('prodi', 'nama_prodi');
         // $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
 

@@ -38,7 +38,7 @@ $route['dosen'] = "dosen/Dosen";
 $route['mahasiswa'] = "mahasiswa/Mahasiswa";
 $route['matakuliah'] = "matakuliah/Matakuliah";
 $route['pertanyaan'] = "pertanyaan/Pertanyaan";
-$route['jawaban'] = "jawaban/Jawaban";
+$route['nilai'] = "nilai/Nilai/get_all_nilai";
 
 
 //routes for admin add master data
@@ -88,3 +88,6 @@ $route['tambah-matakuliah-prodi'] = "matakuliah/Matakuliah/tambah_matakuliah_pro
 $route['edit-dosen-prodi/(:any)'] = "dosen/Dosen/edit_dosen_prodi/$1";
 $route['edit-mahasiswa-prodi/(:any)'] = "mahasiswa/Mahasiswa/edit_mahasiswa_prodi/$1";
 $route['edit-matakuliah-prodi/(:any)'] = "matakuliah/Matakuliah/edit_matakuliah_prodi/$1";
+
+//routes for mahasiswa
+$route['nilai'] = "nilai/Nilai/get_nilai_mahasiswa";

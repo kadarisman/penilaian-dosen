@@ -5,9 +5,9 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <a href="<?= base_url('rekap-data') ?>" class="badge progress-bar-primary">
-                                Cetak <i class="fa fa-print" aria-hidden="true"></i></a><br>
-                            <form action="<?= base_url('filter-tahun1') ?>" method="post">
+                            <button onclick="window.print()" class="badge progress-bar-primary phide">
+                                Cetak <i class="fa fa-print" aria-hidden="true"></i></button>
+                            <form action="<?= base_url('filter-tahun1') ?>" method="post" class="phide">
                                 <br>
                                 Filter :
                                 <select name="smester" id="sm_p" required>
@@ -100,6 +100,21 @@
                             </div>
                         </div>
                         <!-- /.box-body -->
+                        <div class="row tndtgn">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                                <center>
+                                    Matangglumpangdua, <?php echo date('d-m-Y'); ?>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    Ka Prodi <?= $user_prodi['nama_prodi']; ?>
+                                    <br>
+                                    <br>
+                                </center>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.box -->
                 </div>

@@ -5,12 +5,12 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <a href="<?= base_url('rekap-data') ?>" class="badge progress-bar-primary">
-                                Cetak <i class="fa fa-print" aria-hidden="true"></i></a> |
-                            <a href="<?= base_url('rekapitulasi-prodi') ?>" class="badge progress-bar-success">
+                            <button onclick="window.print()" class="badge progress-bar-primary phide">
+                                Cetak <i class="fa fa-print" aria-hidden="true"></i></button>
+                            <a href="<?= base_url('rekapitulasi-prodi') ?>" class="badge progress-bar-success phide">
                                 Kembali</a>
                             <br>
-                            <form action="<?= base_url('filter-tahun1') ?>" method="post">
+                            <form action="<?= base_url('filter-tahun1') ?>" method="post" class="phide">
                                 <br>
                                 Filter :
                                 <select name="smester" id="sm" required>
@@ -52,7 +52,7 @@
                         <div class="box-body">
                             <?= $this->session->flashdata('message1'); ?>
                             <div class="table-responsive">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>No</th>
@@ -106,6 +106,21 @@
                             </div>
                         </div>
                         <!-- /.box-body -->
+                        <div class="row tndtgn">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                                <center>
+                                    Matangglumpangdua, <?php echo date('d-m-Y'); ?>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    Ka Prodi <?= $user_prodi['nama_prodi']; ?>
+                                    <br>
+                                    <br>
+                                </center>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.box -->
                 </div>

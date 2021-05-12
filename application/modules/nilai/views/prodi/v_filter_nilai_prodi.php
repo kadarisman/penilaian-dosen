@@ -41,6 +41,8 @@
                                 <button type="submit" class="badge progress-bar-primary" id="crsmth">Cari</button>
                             </form>
                             <center>
+                                <img src="<?= base_url('assets/'); ?>img/logo1.png" class="user-image logo1"
+                                    alt="User Image">
                                 <h3 class="box-title" id="judul">Data Evaluasi Kinerja Dosen <br>
                                     <?= $user_prodi['nama_prodi']; ?> Universitas Amuslim <br>
                                     <span id="txtsm"><?= 'Smester ' . $sm ?></span><span

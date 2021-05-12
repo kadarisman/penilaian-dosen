@@ -60,10 +60,22 @@
         display: none;
     }
 
+    .logo1 {
+        display: none;
+    }
+
     @media print {
         .tndtgn {
             display: block;
             float: right;
+        }
+    }
+
+    @media print {
+        .logo1 {
+            display: block;
+            float: left;
+            margin-left: 20px;
         }
     }
     </style>

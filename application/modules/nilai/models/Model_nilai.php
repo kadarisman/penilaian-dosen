@@ -76,6 +76,14 @@ class Model_nilai extends CI_Model
         $this->db->where('kd_prodi', $kd_prodi);
         return $this->db->count_all_results();
     }
+
+    public function count_nilai_self()
+    {
+        $username = $this->session->userdata('username');
+        $this->db->from('nilai');
+        $this->db->where('NIDN', $username);
+        return $this->db->count_all_results();
+    }
     public function get_nilai_mahasiswa()
     {
         $username = $this->session->userdata('username');
@@ -84,9 +92,23 @@ class Model_nilai extends CI_Model
         $this->db->join('prodi', 'prodi.kd_prodi = dosen.kd_prodi', 'left');
         $this->db->join('matakuliah', 'matakuliah.kd_matakuliah = nilai.kd_matakuliah', 'left');
         $this->db->join('fakultas', 'fakultas.kd_fakultas = prodi.kd_fakultas', 'left');
-        $this->db->where('NPM', $username);
+        $this->db->where('NIDN', $username);
         return $this->db->get()->result();
     }
+    public function get_all_nilai_self()
+    {
+        $username = $this->session->userdata('username');
+        $this->db->from('nilai');
+        $this->db->join('dosen', 'dosen.NIDN = nilai.NIDN', 'left');
+        $this->db->join('prodi', 'prodi.kd_prodi = dosen.kd_prodi', 'left');
+        $this->db->join('mahasiswa', 'mahasiswa.NPM = nilai.NPM', 'left');
+        $this->db->join('matakuliah', 'matakuliah.kd_matakuliah = nilai.kd_matakuliah', 'left');
+        $this->db->order_by('smester', 'desc');
+        $this->db->order_by('tahun_ajaran', 'desc');
+        $this->db->where('nilai.NIDN', $username);
+        return $this->db->get()->result();
+    }
+
     public function get_nilai_prodi()
     {
         $kd_prodi = $this->session->userdata('kd_prodi');
@@ -99,6 +121,7 @@ class Model_nilai extends CI_Model
         $this->db->where('dosen.kd_prodi', $kd_prodi);
         return $this->db->get()->result();
     }
+
 
     public function filter_tahun_prodi($tahun, $smester)
     {

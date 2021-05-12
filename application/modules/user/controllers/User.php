@@ -40,6 +40,8 @@ class User extends CI_Controller
         $data['total_nilai_mahasiswa'] = $this->Model_nilai->count_nilai_mahasiswa();
         $data['total_nilai_prodi'] = $this->Model_nilai->count_nilai_prodi();
         $data['total_semua_nilai'] = $this->Model_nilai->count_nilai();
+        $data['total_nilai_self'] = $this->Model_nilai->count_nilai_self();
+
         //$data['selectProdi'] = $this->Model_user->select_where('prodi', 'nama_prodi');
         // $data['selectMahasiswa'] = $this->Model_mahasiswa->get_all_mahasiswa();
 

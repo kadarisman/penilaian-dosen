@@ -115,3 +115,6 @@ $route['rekapitulasi'] = "nilai/Nilai/rekapitulasi";
 
 //routes for detail nilai
 $route['detail/(:any)'] = "nilai/Nilai/detail_nilai/$1";
+
+//routes for dosen biew nilai
+$route['nilai-view'] = "nilai/Nilai/get_nilai_dosen_selfe";

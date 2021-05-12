@@ -265,9 +265,9 @@
             <!--untuk dosen-->
             <?php } else { ?>
             <li>
-                <a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i>Data Nilai
+                <a href="nilai-view"><i class="fa fa-circle-o"></i>Data Nilai
                     <span class="pull-right-container">
-                        <small class="label pull-right bg-red">12</small>
+                        <small class="label pull-right bg-red"><?= $total_nilai_self; ?></small>
                     </span>
                 </a>
             </li>

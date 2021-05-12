@@ -348,8 +348,29 @@ class Nilai  extends CI_Controller
     }
     //end admin dan bpm method
 
+    //dosen  method
+    public function get_nilai_dosen_selfe()
+    {
+        $data['title'] = 'Nilai';
+        //get data for session        
+        $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+        $data['user_dosen'] = $this->Model_user->user_dosen_get_data(); //--//
+        $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--// 
 
-    //end admin and bpm method
+
+        //count master data      
+        $data['total_nilai_self'] = $this->Model_nilai->count_nilai_self();
+
+        //get data
+        $data['all_nilai_self'] = $this->Model_nilai->get_all_nilai_self();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('v_nilai_self', $data);
+        $this->load->view('templates/footer');
+    }
 
     //all user edit nilai
     public function edit_nilai($id_nilai)

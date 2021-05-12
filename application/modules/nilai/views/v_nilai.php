@@ -5,12 +5,8 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <a href="<?= base_url('penilaian-dosen') ?>" class="badge progress-bar-primary">Buat
-                                Penlaian</a>
-                            <br>
                             <center>
-                                <h3 class="box-title" id="judul">Daftar Nilai Dosen<br>
-                                    <?php echo 'yang pernah di isi oleh ', $user_mahasiswa['nama_mahasiswa']; ?></h3>
+                                <h3 class="box-title" id="judul">Daftar Semua Nilai Dosen</h3>
                             </center>
                         </div>
                         <!-- /.box-header -->
@@ -21,6 +17,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Penilai</th>
                                             <th>Fakultas</th>
                                             <th>Prodi</th>
                                             <th>NIDN</th>
@@ -38,10 +35,11 @@
                                         ?>
                                         <?php
                                         $no = 0;
-                                        foreach ($nilai_mahasiswa as $nl) :
+                                        foreach ($all_nilai as $nl) :
                                             $no++ ?>
                                         <tr>
                                             <td><?= $no ?></td>
+                                            <td><?= $nl->nama_mahasiswa; ?></td>
                                             <td><?= $nl->nama_fakultas; ?></td>
                                             <td><?= $nl->nama_prodi; ?></td>
                                             <td><?= $nl->NIDN; ?></td>

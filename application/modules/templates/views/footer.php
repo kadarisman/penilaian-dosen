@@ -78,6 +78,26 @@ $(document).ready(function() {
     });
 })
 </script>
+
+
+<!--untuk perhitungan nilai-->
+<script>
+$(document).ready(function() {
+    $("input[type=radio]").click(function() {
+        var total = 0;
+        $("input[type=radio]:checked").each(function() {
+            total += parseFloat($(this).val());
+        });
+        var pertanyaan = $('.pr').length;
+        totalN = total / pertanyaan;
+        $("#nilai").val(totalN);
+    });
+    $('#hapusnilai').click(function() {
+        $('input[type=radio]').prop("checked", false);
+        $('#nilai').val('');
+    })
+})
+</script>
 </body>
 
 </html>

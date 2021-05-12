@@ -37,6 +37,9 @@ class Matakuliah  extends CI_Controller
         $data['total_mahasiswa'] = $this->Model_mahasiswa->count_mahasiswa();
         $data['total_pertanyaan'] = $this->Model_pertanyaan->count_pertanyaan();
         $data['total_matakuliah'] = $this->Model_matakuliah->count_matakuliah();
+        $data['total_nilai_mahasiswa'] = $this->Model_nilai->count_nilai_mahasiswa();
+        $data['total_nilai_prodi'] = $this->Model_nilai->count_nilai_prodi();
+        $data['total_semua_nilai'] = $this->Model_nilai->count_nilai();
 
 
         $this->load->view('templates/header', $data);
@@ -89,6 +92,9 @@ class Matakuliah  extends CI_Controller
             $data['total_mahasiswa'] = $this->Model_mahasiswa->count_mahasiswa();
             $data['total_pertanyaan'] = $this->Model_pertanyaan->count_pertanyaan();
             $data['total_matakuliah'] = $this->Model_matakuliah->count_matakuliah();
+            $data['total_nilai_mahasiswa'] = $this->Model_nilai->count_nilai_mahasiswa();
+            $data['total_nilai_prodi'] = $this->Model_nilai->count_nilai_prodi();
+            $data['total_semua_nilai'] = $this->Model_nilai->count_nilai();
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/topbar', $data);
@@ -147,6 +153,9 @@ class Matakuliah  extends CI_Controller
             $data['total_mahasiswa'] = $this->Model_mahasiswa->count_mahasiswa();
             $data['total_pertanyaan'] = $this->Model_pertanyaan->count_pertanyaan();
             $data['total_matakuliah'] = $this->Model_matakuliah->count_matakuliah();
+            $data['total_nilai_mahasiswa'] = $this->Model_nilai->count_nilai_mahasiswa();
+            $data['total_nilai_prodi'] = $this->Model_nilai->count_nilai_prodi();
+            $data['total_semua_nilai'] = $this->Model_nilai->count_nilai();
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/topbar', $data);
@@ -197,6 +206,9 @@ class Matakuliah  extends CI_Controller
         $data['total_dosen_prodi'] = $this->Model_dosen->count_dosen_prodi();
         $data['total_mahasiswa_prodi'] = $this->Model_mahasiswa->count_mahasiswa_prodi();
         $data['total_matakuliah_prodi'] = $this->Model_matakuliah->count_matakuliah_prodi();
+        $data['total_nilai_mahasiswa'] = $this->Model_nilai->count_nilai_mahasiswa();
+        $data['total_nilai_prodi'] = $this->Model_nilai->count_nilai_prodi();
+        $data['total_semua_nilai'] = $this->Model_nilai->count_nilai();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
@@ -216,7 +228,7 @@ class Matakuliah  extends CI_Controller
         $this->form_validation->set_rules('nama_matakuliah', 'nama_matakuliah', 'required|trim', [
             'required' => 'Nama Matakuliah tidak boleh kosong'
         ]);
-        $this->form_validation->set_rules('sks', 'Alamat_mahasiswa', 'required|trim', [
+        $this->form_validation->set_rules('sks', 'Sks', 'required|trim', [
             'required' => 'SKS harus dipilih'
         ]);
 
@@ -238,6 +250,9 @@ class Matakuliah  extends CI_Controller
             $data['total_dosen_prodi'] = $this->Model_dosen->count_dosen_prodi();
             $data['total_mahasiswa_prodi'] = $this->Model_mahasiswa->count_mahasiswa_prodi();
             $data['total_matakuliah_prodi'] = $this->Model_matakuliah->count_matakuliah_prodi();
+            $data['total_nilai_mahasiswa'] = $this->Model_nilai->count_nilai_mahasiswa();
+            $data['total_nilai_prodi'] = $this->Model_nilai->count_nilai_prodi();
+            $data['total_semua_nilai'] = $this->Model_nilai->count_nilai();
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/topbar', $data);
@@ -286,6 +301,9 @@ class Matakuliah  extends CI_Controller
             $data['total_dosen_prodi'] = $this->Model_dosen->count_dosen_prodi();
             $data['total_mahasiswa_prodi'] = $this->Model_mahasiswa->count_mahasiswa_prodi();
             $data['total_matakuliah_prodi'] = $this->Model_matakuliah->count_matakuliah_prodi();
+            $data['total_nilai_mahasiswa'] = $this->Model_nilai->count_nilai_mahasiswa();
+            $data['total_nilai_prodi'] = $this->Model_nilai->count_nilai_prodi();
+            $data['total_semua_nilai'] = $this->Model_nilai->count_nilai();
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/topbar', $data);

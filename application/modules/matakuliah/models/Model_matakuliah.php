@@ -15,6 +15,15 @@ class Model_matakuliah extends CI_Model
         $this->db->where('kd_prodi', $prodi);
         return $this->db->count_all_results();
     }
+    public function get_matakuliah_mahasiswa()
+    {
+        $prodi = $this->session->userdata('kd_prodi');
+        $this->db->select('*');
+        $this->db->from('matakuliah');
+        $where = array('matakuliah.kd_prodi' => $prodi);
+        $this->db->where($where);
+        return $this->db->get()->result();
+    }
     public function get_all_matakuliah()
     {
         $this->db->select('*');

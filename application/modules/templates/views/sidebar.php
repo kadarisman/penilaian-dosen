@@ -96,9 +96,14 @@
                             </span>
                         </a>
                     </li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i>Data Jawaban
+                    <li><a href=" <?= base_url('nilai-dosen') ?>"><i class="fa fa-circle-o"></i>Data Nilai
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red">12</small>
+                                <small class="label pull-right bg-red"><?= $total_semua_nilai; ?></small>
+                            </span>
+                        </a>
+                    </li>
+                    <li><a href="<?= base_url('rekapitulasi') ?>"><i class="fa fa-circle-o"></i>Rakapitulasi
+                            <span class="pull-right-container">
                             </span>
                         </a>
                     </li>
@@ -169,6 +174,17 @@
                             </span>
                         </a>
                     </li>
+                    <li><a href=" <?= base_url('nilai-dosen') ?>"><i class="fa fa-circle-o"></i>Data Nilai
+                            <span class="pull-right-container">
+                                <small class="label pull-right bg-red"><?= $total_semua_nilai; ?></small>
+                            </span>
+                        </a>
+                    </li>
+                    <li><a href="<?= base_url('rekapitulasi') ?>"><i class="fa fa-circle-o"></i>Rakapitulasi
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 
@@ -224,9 +240,14 @@
                             </span>
                         </a>
                     </li>
-                    <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i>Data Jawaban
+                    <li><a href="<?= base_url('nilai-prd') ?>"><i class="fa fa-circle-o"></i>Data Nilai
                             <span class="pull-right-container">
-                                <small class="label pull-right bg-red">12</small>
+                                <small class="label pull-right bg-red"><?= $total_nilai_prodi; ?></small>
+                            </span>
+                        </a>
+                    </li>
+                    <li><a href="<?= base_url('rekapitulasi-prodi') ?>"><i class="fa fa-circle-o"></i>Rakapitulasi
+                            <span class="pull-right-container">
                             </span>
                         </a>
                     </li>
@@ -243,7 +264,8 @@
             </li>
             <!--untuk dosen-->
             <?php } else { ?>
-            <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i>Data Nilai
+            <li>
+                <a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i>Data Nilai
                     <span class="pull-right-container">
                         <small class="label pull-right bg-red">12</small>
                     </span>

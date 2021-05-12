@@ -5,12 +5,9 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <a href="<?= base_url('penilaian-dosen') ?>" class="badge progress-bar-primary">Buat
-                                Penlaian</a>
-                            <br>
                             <center>
-                                <h3 class="box-title" id="judul">Daftar Nilai Dosen<br>
-                                    <?php echo 'yang pernah di isi oleh ', $user_mahasiswa['nama_mahasiswa']; ?></h3>
+                                <h3 class="box-title" id="judul">Daftar semua Nilai Dosen<br>
+                                    <?php echo $user_prodi['nama_prodi']; ?></h3>
                             </center>
                         </div>
                         <!-- /.box-header -->
@@ -21,8 +18,6 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Fakultas</th>
-                                            <th>Prodi</th>
                                             <th>NIDN</th>
                                             <th>Nama Dosen</th>
                                             <th>Matakuliah</th>
@@ -30,6 +25,7 @@
                                             <th>Bobot</th>
                                             <th>Smester</th>
                                             <th>TA</th>
+                                            <th>Penilai</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -38,12 +34,10 @@
                                         ?>
                                         <?php
                                         $no = 0;
-                                        foreach ($nilai_mahasiswa as $nl) :
+                                        foreach ($nilai_prodi as $nl) :
                                             $no++ ?>
                                         <tr>
                                             <td><?= $no ?></td>
-                                            <td><?= $nl->nama_fakultas; ?></td>
-                                            <td><?= $nl->nama_prodi; ?></td>
                                             <td><?= $nl->NIDN; ?></td>
                                             <td><?= $nl->nama_dosen; ?></td>
                                             <td><?= $nl->nama_matakuliah; ?></td>
@@ -62,6 +56,7 @@
                                             </td>
                                             <td><?= $nl->smester; ?></td>
                                             <td><?= $nl->tahun_ajaran; ?></td>
+                                            <td><?= $nl->nama_mahasiswa; ?></td>
                                             <td>
                                                 <a href="<?= base_url('edit-nilai/' . $nl->id_nilai) ?>"
                                                     class="badge progress-bar-primary">Edit</a>

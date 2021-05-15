@@ -76,6 +76,9 @@ $(document).ready(function() {
             $('#password2').attr('type', 'password');
         }
     });
+    $('.hapus').click(function() {
+        $(".form-control").val('');
+    })
 })
 </script>
 

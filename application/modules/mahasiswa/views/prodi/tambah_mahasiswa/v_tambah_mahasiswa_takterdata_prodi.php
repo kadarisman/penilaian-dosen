@@ -30,7 +30,7 @@
                             </div>
                             <div class="social-auth-links text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                <a href="<?= base_url('user-mahasiswa-prodi') ?>" class="btn btn-primary">Batal</a>
+                                <a href="<?= base_url('user-mahasiswa-prodi') ?>" class="btn btn-primary">Close</a>
                                 <!-- <a href="#" class="btn btn-block btn-success">Daftar</a> -->
                             </div>
                         </div>

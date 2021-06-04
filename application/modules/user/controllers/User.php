@@ -597,6 +597,8 @@ class User extends CI_Controller
             $data['total_user_admin'] = $this->Model_user->count_admin();
             $data['dosen'] = $this->Model_dosen->get_all_dosen();
 
+            $data['dosenakun'] = $this->Model_dosen->get_dosen_by_id($NIDN);
+
             //count master data
             $data['total_fakultas'] = $this->Model_fakultas->count_fakultas();
             $data['total_prodi'] = $this->Model_prodi->count_prodi();
@@ -611,7 +613,7 @@ class User extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('templates/sidebar', $data);
-            $this->load->view('prodi/tambah_user/v_tambah_akun_dosen', $data);
+            $this->load->view('admin/tambah_user/v_tambah_akun_dosen', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [

@@ -92,7 +92,7 @@ class Model_nilai extends CI_Model
         $this->db->join('prodi', 'prodi.kd_prodi = dosen.kd_prodi', 'left');
         $this->db->join('matakuliah', 'matakuliah.kd_matakuliah = nilai.kd_matakuliah', 'left');
         $this->db->join('fakultas', 'fakultas.kd_fakultas = prodi.kd_fakultas', 'left');
-        $this->db->where('NIDN', $username);
+        $this->db->where('nilai.NPM', $username);
         return $this->db->get()->result();
     }
     public function get_all_nilai_self()

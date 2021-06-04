@@ -14,13 +14,13 @@
                         <div class="box-body">
                             <div class="form-group has-feedback">
                                 <input type="text" class="form-control" name="username" id="username"
-                                    value="<?= $dosen->NIDN ?>" readonly>
+                                    value="<?= $dosenakun->NIDN ?>" readonly>
                                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
                                 <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group has-feedback">
                                 <input type="text" class="form-control" name="kd_prodi" id="kd_prodi"
-                                    value="<?= $dosen->kd_prodi ?>" readonly>
+                                    value="<?= $dosenakun->kd_prodi ?>" readonly>
                                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
                                 <?= form_error('kd_prodi', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>

@@ -2,8 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 $route['default_controller'] = "auth/Login";
-//routes for login
-$route['Login'] = "auth/Login";
+//routes for login$route['Login'] = "auth/Login";
 $route['Dashboard'] = "user/User";
 
 //routes for get profil

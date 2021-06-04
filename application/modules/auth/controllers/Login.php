@@ -13,7 +13,7 @@ class Login extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('username')) { //status user check, has been login or not
-            redirect('user/Dashboard');
+            redirect('user/User');
         }
         $this->form_validation->set_rules('username', 'Username', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');

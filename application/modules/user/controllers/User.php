@@ -753,7 +753,7 @@ class User extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/topbar', $data);
             $this->load->view('templates/sidebar', $data);
-            $this->load->view('prodi/tambah_user/v_tambah_akun_mahasiswa', $data);
+            $this->load->view('admin/tambah_user/v_tambah_akun_mahasiswa', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [

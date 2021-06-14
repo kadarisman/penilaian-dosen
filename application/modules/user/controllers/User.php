@@ -1079,7 +1079,7 @@ class User extends CI_Controller
         } else {
             $data = [
                 'username' => htmlspecialchars($this->input->post('username', true)),
-                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'kd_prodi' => $this->session->userdata('kd_prodi'),
                 'level' => 'dosen',
                 'created' => date('d-m-Y H:i:s')
@@ -1201,7 +1201,7 @@ class User extends CI_Controller
         } else {
             $data = [
                 'username' => htmlspecialchars($this->input->post('username', true)),
-                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'kd_prodi' => $this->session->userdata('kd_prodi'),
                 'level' => 'mahasiswa',
                 'created' => date('d-m-Y H:i:s')
@@ -1264,7 +1264,7 @@ class User extends CI_Controller
         } else {
             $data = [
                 'username' => htmlspecialchars($this->input->post('username', true)),
-                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'kd_prodi' => $this->session->userdata('kd_prodi'),
                 'level' => 'mahasiswa',
                 'created' => date('d-m-Y H:i:s')

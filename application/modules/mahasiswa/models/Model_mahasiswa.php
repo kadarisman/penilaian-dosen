@@ -25,6 +25,17 @@ class Model_mahasiswa extends CI_Model
         $this->db->order_by('nama_prodi', 'asc');
         return $this->db->get()->result();
     }
+    public function get_mahasiswa_perprodi($kd_prodi)
+    {
+        $this->db->select('*');
+        $this->db->from('mahasiswa');
+        $this->db->join('prodi', 'prodi.kd_prodi=mahasiswa.kd_prodi', 'left');
+        $this->db->join('user', 'user.username=mahasiswa.NPM', 'left');
+        $this->db->join('fakultas', 'fakultas.kd_fakultas=prodi.kd_fakultas', 'left');
+        $where = array('mahasiswa.kd_prodi' => $kd_prodi);
+        $this->db->where($where);
+        return $this->db->get()->result();
+    }
     public function get_all_mahasiswa_prodi()
     {
         $prodi = $this->session->userdata('kd_prodi');

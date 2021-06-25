@@ -5,12 +5,18 @@
                 <div class="box">
                     <div class="box">
                         <div class="box-header">
-                            <a href="<?= base_url('tambah-mahasiswa') ?>" class="badge progress-bar-primary">Tambah
+                            <a href="<?= base_url('tambah-mahasiswa/' . $prodi->kd_prodi) ?>"
+                                class="badge progress-bar-primary">Tambah
                                 Data</a>
+                            <a href="<?= base_url('mahasiswa') ?>" class="badge progress-bar-primary">Kembali</a>
                             <br>
                             <center>
-                                <h3 class="box-title" id="judul">Daftar nama-nama Mahasiswa Universitas Almuslim Bireuen
-                                </h3>
+                                <?php if ($mahasiswa != null) { ?>
+                                <h3 class="box-title" id="judul">Daftar Mahasiswa Prodi <?= $prodi->nama_prodi ?>
+                                    <?php } else { ?>
+                                    <h3 class="box-title" id="judul">Belum ada data
+                                        <?php } ?>
+                                    </h3>
                             </center>
                         </div>
                         <!-- /.box-header -->
@@ -25,8 +31,6 @@
                                             <th>NPM</th>
                                             <th>Nama</th>
                                             <th>Alamat</th>
-                                            <th>Prodi</th>
-                                            <th>Fakultas</th>
                                             <th>Status</th>
                                             <th>Akun</th>
                                             <th>Aksi</th>
@@ -47,8 +51,6 @@
                                             <td><?= $mhs->NPM; ?></td>
                                             <td><?= $mhs->nama_mahasiswa; ?></td>
                                             <td><?= $mhs->alamat_mahasiswa; ?></td>
-                                            <td><?= $mhs->nama_prodi; ?></td>
-                                            <td><?= $mhs->nama_fakultas; ?></td>
                                             <td><?php if ($mhs->status == '1') {
                                                         echo 'Aktif';
                                                     } else {

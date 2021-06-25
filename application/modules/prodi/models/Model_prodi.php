@@ -16,6 +16,21 @@ class Model_prodi extends CI_Model
         $this->db->order_by('nama_fakultas', 'asc');
         return $this->db->get()->result();
     }
+
+    public function get_prodi_name($kd_prodi)
+    {
+        $this->db->select('*');
+        return $this->db->get_where('prodi', ['kd_prodi' => $kd_prodi])->row();
+    }
+
+    public function get_all_prodi_for_admin()
+    {
+        $this->db->select('*');
+        $this->db->from('prodi');
+        $this->db->join('fakultas', 'fakultas.kd_fakultas=prodi.kd_fakultas', 'left');
+        $this->db->order_by('nama_prodi', 'asc');
+        return $this->db->get()->result();
+    }
     public function add_prodi($data)
     {
         $this->db->insert('prodi', $data);

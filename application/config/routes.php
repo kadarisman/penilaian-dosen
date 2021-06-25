@@ -36,6 +36,9 @@ $route['fakultas'] = "fakultas/Fakultas";
 $route['prodi'] = "prodi/Prodi";
 $route['dosen'] = "dosen/Dosen";
 $route['mahasiswa'] = "mahasiswa/Mahasiswa";
+
+$route['detail-mahasiswa/(:any)'] = "mahasiswa/Mahasiswa/get_mahasiswa_perprodi/$1";
+
 $route['matakuliah'] = "matakuliah/Matakuliah";
 $route['pertanyaan'] = "pertanyaan/Pertanyaan";
 $route['nilai'] = "nilai/Nilai/get_all_nilai";
@@ -46,7 +49,7 @@ $route['tambah-fakultas'] = "fakultas/Fakultas/tambah_fakultas";
 $route['tambah-prodi'] = "prodi/Prodi/tambah_prodi";
 $route['tambah-dosen'] = "dosen/Dosen/tambah_dosen";
 $route['tambah-data-dosen/(:any)'] = "dosen/Dosen/tambah_dosen_takterdata/$1";
-$route['tambah-mahasiswa'] = "mahasiswa/Mahasiswa/tambah_mahasiswa";
+$route['tambah-mahasiswa/(:any)'] = "mahasiswa/Mahasiswa/tambah_mahasiswa/$1";
 $route['tambah-data-mahasiswa/(:any)'] = "mahasiswa/Mahasiswa/tambah_mahasiswa_takterdata/$1";
 $route['tambah-pertanyaan'] = "pertanyaan/Pertanyaan/tambah_pertanyaan";
 $route['tambah-matakuliah'] = "matakuliah/Matakuliah/tambah_matakuliah";

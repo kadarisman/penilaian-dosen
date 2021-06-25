@@ -6,20 +6,16 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Tambah Mahasiswa</h3>
+                        <h3 class="box-title">Tambah Mahasiswa <?= $prodi_1->nama_prodi ?></h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
                     <form action="" method="post">
                         <div class="box-body">
                             <div class="form-group">
-                                <select class="form-control border border-dark" tabindex="-1" aria-hidden="true"
-                                    name="kd_prodi">
-                                    <option selected="true" disabled="disabled">Pilih Prodi</option>
-                                    <?php foreach ($prodi as $prd) : ?>
-                                    <option value="<?= $prd->kd_prodi ?>"><?= $prd->nama_prodi ?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <input type="text" name="kd_prodi" id="kd_prodi" readonly
+                                    value="<?= $prodi_1->kd_prodi ?>">
+                                <span class="glyphicon glyphicon-home form-control-feedback"></span>
                                 <?= form_error('kd_prodi', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group has-feedback">
@@ -45,7 +41,8 @@
                             <div class="social-auth-links text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                                 <a class="btn btn-primary hapus">Hapus</a>
-                                <a href="<?= base_url('mahasiswa') ?>" class="btn btn-primary">CLose</a>
+                                <a href="<?= base_url('detail-mahasiswa/' . $prodi_1->kd_prodi) ?>"
+                                    class="btn btn-primary">CLose</a>
                                 <!-- <a href="#" class="btn btn-block btn-success">Daftar</a> -->
                             </div>
                         </div>

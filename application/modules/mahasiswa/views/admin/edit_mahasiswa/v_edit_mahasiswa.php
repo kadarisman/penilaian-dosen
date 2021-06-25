@@ -14,6 +14,7 @@
 
                         <div class="box-body">
                             <input type="hidden" class="form-control" name="NPM" value="<?= $mahasiswa->NPM ?>">
+                            <input type="text" class="form-control" name="kd_prodi" value="<?= $mahasiswa->kd_prodi ?>">
                             <div class="form-group has-feedback">
                                 <label>Nama Mahasiswa</label>
                                 <input type="text" class="form-control" name="nama_mahasiswa" id="nama_mahasiswa"
@@ -28,20 +29,11 @@
                                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
                                 <?= form_error('alamat_mahasiswa', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
-                            <div class="form-group">
-                                <label>Prodi</label>
-                                <select class="form-control border border-dark" tabindex="-1" aria-hidden="true"
-                                    name="kd_prodi">
-                                    <option value="<?= $mahasiswa->kd_prodi ?>"><?= $mahasiswa->nama_prodi ?>
-                                    </option>
-                                    <?php foreach ($prodi as $prd) : ?>
-                                    <option value="<?= $prd->kd_prodi ?>"><?= $prd->nama_prodi ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
                             <div class="social-auth-links text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                <a href="<?= base_url('mahasiswa') ?>" class="btn btn-primary">Batal</a>
+
+                                <a href="<?= base_url('detail-mahasiswa/' . $mahasiswa->kd_prodi) ?>"
+                                    class="btn btn-primary">Batal</a>
                                 <!-- <a href="#" class="btn btn-block btn-success">Daftar</a> -->
                             </div>
                         </div>

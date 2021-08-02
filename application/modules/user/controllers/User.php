@@ -352,7 +352,7 @@ class User extends CI_Controller
         } else {
             $data = [
                 'username' => htmlspecialchars($this->input->post('username', true)),
-                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'level' => 'admin',
                 'created' => date('d-m-Y H:i:s')
             ];
@@ -477,11 +477,13 @@ class User extends CI_Controller
         } else {
             $data = [
                 'username' => htmlspecialchars($this->input->post('username', true)),
-                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'kd_prodi' => htmlspecialchars($this->input->post('kd_prodi', true)),
                 'level' => 'prodi',
                 'created' => date('d-m-Y H:i:s')
             ];
+            // var_dump($data);
+            // die();
             $this->Model_user->add_user($data, 'user');
             $this->session->set_flashdata('message1', '<div class="alert alert-success" role="alert" id="msg">Berhasil di Tambah</div>');
             redirect('user-prodi');
@@ -625,6 +627,8 @@ class User extends CI_Controller
                 'level' => 'dosen',
                 'created' => date('d-m-Y H:i:s')
             ];
+            // var_dump($data);
+            // die();
             $this->Model_user->add_user($data, 'user');
             $this->session->set_flashdata('message1', '<div class="alert alert-success" role="alert" id="msg">Berhasil di Tambah</div>');
             redirect('user-dosen');
@@ -1142,7 +1146,7 @@ class User extends CI_Controller
         } else {
             $data = [
                 'username' => htmlspecialchars($this->input->post('username', true)),
-                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'kd_prodi' => $this->session->userdata('kd_prodi'),
                 'level' => 'dosen',
                 'created' => date('d-m-Y H:i:s')

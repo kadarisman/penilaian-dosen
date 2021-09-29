@@ -9,6 +9,81 @@ class Model_nilai extends CI_Model
         return $this->db->count_all_results('nilai');
     }
 
+    public function detail_genap($kd_matakuliah)
+    {
+        $prodi = $this->session->userdata('kd_prodi');
+        $this->db->select('*');
+        $this->db->from('nilai');
+        $this->db->join('dosen', 'dosen.NIDN = nilai.NIDN', 'left');
+        $this->db->join('mahasiswa', 'mahasiswa.NPM = nilai.NPM', 'left');
+
+        $this->db->group_by('nilai.NIDN');
+        //$this->db->group_by(array('nilai.NIDN', 'nilai.kd_matakuliah', 'nilai.smester', 'nilai.tahun_ajaran'));
+        $this->db->order_by('smester', 'desc');
+        $this->db->order_by('tahun_ajaran', 'desc');
+
+        $this->db->where('nilai.kd_matakuliah', $kd_matakuliah);
+        $this->db->where('dosen.kd_prodi',$prodi);
+        $this->db->where('nilai.smester','Genap');
+        return $this->db->get()->result();
+    }
+    public function detail_ganjil($kd_matakuliah)
+    {
+        $prodi = $this->session->userdata('kd_prodi');
+        $this->db->select('*');
+        $this->db->from('nilai');
+        $this->db->join('dosen', 'dosen.NIDN = nilai.NIDN', 'left');
+        $this->db->join('mahasiswa', 'mahasiswa.NPM = nilai.NPM', 'left');
+
+        $this->db->group_by('nilai.NIDN');
+        //$this->db->group_by(array('nilai.NIDN', 'nilai.kd_matakuliah', 'nilai.smester', 'nilai.tahun_ajaran'));
+        $this->db->order_by('smester', 'desc');
+        $this->db->order_by('tahun_ajaran', 'desc');
+
+        $this->db->where('nilai.kd_matakuliah', $kd_matakuliah);
+        $this->db->where('dosen.kd_prodi',$prodi);
+        $this->db->where('nilai.smester','Ganjil');
+        return $this->db->get()->result();
+    }
+
+
+    public function detail_genap_mhs($kd_matakuliah)
+    {
+        $mhs = $this->session->userdata('username');
+        //echo $mhs; die();
+        $this->db->select('*');
+        $this->db->from('nilai');
+        $this->db->join('dosen', 'dosen.NIDN = nilai.NIDN', 'left');
+
+        $this->db->group_by('nilai.NIDN');
+        //$this->db->group_by(array('nilai.NIDN', 'nilai.kd_matakuliah', 'nilai.smester', 'nilai.tahun_ajaran'));
+        $this->db->order_by('smester', 'desc');
+        $this->db->order_by('tahun_ajaran', 'desc');
+
+        $this->db->where('nilai.kd_matakuliah', $kd_matakuliah);
+        $this->db->where('nilai.NPM',$mhs);
+        $this->db->where('nilai.smester','Genap');
+        return $this->db->get()->result();
+    }
+    public function detail_ganjil_mhs($kd_matakuliah)
+    {
+        $mhs = $this->session->userdata('username');
+        //echo $mhs; die();
+        $this->db->select('*');
+        $this->db->from('nilai');
+        $this->db->join('dosen', 'dosen.NIDN = nilai.NIDN', 'left');
+
+        $this->db->group_by('nilai.NIDN');
+        //$this->db->group_by(array('nilai.NIDN', 'nilai.kd_matakuliah', 'nilai.smester', 'nilai.tahun_ajaran'));
+        $this->db->order_by('smester', 'desc');
+        $this->db->order_by('tahun_ajaran', 'desc');
+
+        $this->db->where('nilai.kd_matakuliah', $kd_matakuliah);
+        $this->db->where('nilai.NPM',$mhs);
+        $this->db->where('nilai.smester','Ganjil');
+        return $this->db->get()->result();
+    }
+
     public function get_all_nilai()
     {
         $this->db->from('nilai');
@@ -76,6 +151,16 @@ class Model_nilai extends CI_Model
         $this->db->where('kd_prodi', $kd_prodi);
         return $this->db->count_all_results();
     }
+    // public function count_nilai_prodi_per_mk()
+    // {
+    //     $kd_prodi = $this->session->userdata('kd_prodi');
+    //     $this->db->from('nilai');
+    //     $this->db->join('dosen', 'dosen.NIDN = nilai.NIDN', 'left');
+    //     //$this->db->join('matakuliah', 'dosen.NIDN = matakuliah.NIDN', 'left');
+    //     //$this->db->join('matakuliah', 'nilai.kd_matakuliah = matakuliah.kd_matakuliah', 'left');
+    //     $this->db->where('kd_prodi', $kd_prodi);
+    //     return $this->db->count_all_results();
+    // }
 
     public function count_nilai_self()
     {

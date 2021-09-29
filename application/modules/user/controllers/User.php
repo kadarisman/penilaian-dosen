@@ -49,6 +49,13 @@ class User extends CI_Controller
         $data['total_dosen_prodi'] = $this->Model_dosen->count_dosen_prodi();
         $data['total_mahasiswa_prodi'] = $this->Model_mahasiswa->count_mahasiswa_prodi();
         $data['total_matakuliah_prodi'] = $this->Model_matakuliah->count_matakuliah_prodi();
+        
+        $data['matakuliah_prodi'] = $this->Model_matakuliah->get_all_matakuliah_prodi();
+        
+        
+        //$data['count_nilai_prodi_per_mk'] = $this->Model_nilai->count_nilai_prodi_per_mk();
+
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);

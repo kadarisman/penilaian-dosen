@@ -24,6 +24,14 @@ class Model_matakuliah extends CI_Model
         $this->db->where($where);
         return $this->db->get()->result();
     }
+
+    public function ambil_nama_mk($kd_matakuliah)
+    {
+        $this->db->from('matakuliah');
+        $this->db->where('kd_matakuliah', $kd_matakuliah);
+        return $this->db->get()->row();
+    }
+
     public function get_all_matakuliah()
     {
         $this->db->select('*');

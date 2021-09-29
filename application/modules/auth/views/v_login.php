@@ -64,7 +64,7 @@
         <div class="login-box-body">
             <p class="login-box-msg" style="font-size: 18px;"><b>Sistem Informasi Evaluasi
                     Kinerja Dosen</b></p>
-            <form action="<?= base_url('Auth/Login') ?>" method="post">
+            <form action="<?= base_url('auth/Login') ?>" method="post">
                 <div class="form-group has-feedback">
                     <input type="text" class="form-control" placeholder="Username" name="username" id="username"
                         value="<?= set_value('username'); ?>">

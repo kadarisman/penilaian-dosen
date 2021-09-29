@@ -45,11 +45,13 @@ class Login extends CI_Controller
                 ];
                 $this->session->set_userdata($data);
                 if ($user['level'] == 'admin' || $user['level'] == 'BPM' || $user['level'] == 'prodi' || $user['level'] == 'dosen' || $user['level'] == 'mahasiswa') {
+                    // echo (json_encode($user));die();
                     redirect('Dashboard');
                 } else {
                     redirect('Dashboard');
-                }
+                }               
             } else {
+                
                 $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-ban"></i> Alert!</h4>
                 Password Salah !</div>');
                 redirect('auth/Login');

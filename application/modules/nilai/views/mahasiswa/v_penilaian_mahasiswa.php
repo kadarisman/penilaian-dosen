@@ -20,36 +20,17 @@
                                         <?= form_error('kd_matakuliah', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group has-feedback" style="width: 50%;">
-                                        <select class="form-control border border-dark" tabindex="-1" aria-hidden="true"
-                                            name="smester">
-                                            <option selected="true" disabled="disabled">Pilih Smester</option>
-                                            <option value="Ganjil">Ganjil</option>
-                                            <option value="Genap">Genap</option>
-                                        </select>
-                                        <?= form_error('smester', '<small class="text-danger pl-3">', '</small>'); ?>
+                                    <?php $bulan_ini=date('n');?>
+                                    <?php if($bulan_ini<=6){ ?>
+                                        <input type="text" class="form-control" name="smester" value="Genap" readonly>
+                                    <?php }else {?>
+                                        <input type="text" class="form-control" name="smester" value="Ganjil" readonly>
+                                    <?php } ?>
+                                         <?= form_error('smester', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group has-feedback" style="width: 50%;">
-                                        <select class="form-control border border-dark" tabindex="-1" aria-hidden="true"
-                                            name="tahun_ajaran">
-                                            <option selected="true" disabled="disabled">Pilih Tahun Ajaran</option>
-                                            <?php
-                                            $tahun_satu = date('Y') - 1;
-                                            $tahun_dua = date('Y');
-                                            $tahun_batas = 2010;
-
-                                            while (True) {
-                                            ?>
-                                            <option value="<?= $tahun_satu . ' / ' . $tahun_dua ?>">
-                                                <?= $tahun_satu . '/' . $tahun_dua ?></option>
-                                            <?php
-                                                $tahun_satu = $tahun_satu - 1;
-                                                $tahun_dua = $tahun_dua - 1;
-
-                                                if ($tahun_satu == $tahun_batas) {
-                                                    break;
-                                                }
-                                            } ?>
-                                        </select>
+                                    <?php $tahun1 = date('Y'); $tahun2 = date('Y')-1;?>
+                                    <input type="text" class="form-control" name="tahun_ajaran" value="<?=$tahun1, ' / ',$tahun2?>" readonly>
                                     </div>
                                     <div class="form-group has-feedback" style="width: 50%;">
                                         <select class="form-control border border-dark" tabindex="-1" aria-hidden="true"

@@ -121,3 +121,10 @@ $route['detail/(:any)'] = "nilai/Nilai/detail_nilai/$1";
 
 //routes for dosen biew nilai
 $route['nilai-view'] = "nilai/Nilai/get_nilai_dosen_selfe";
+
+
+
+$route['detail_genap/(:any)'] = "nilai/Nilai/detail_genap/$1";
+$route['detail_genap_mhs/(:any)'] = "nilai/Nilai/detail_genap_mhs/$1";
+$route['detail_ganjil/(:any)'] = "nilai/Nilai/detail_ganjil/$1";
+$route['detail_ganjil_mhs/(:any)'] = "nilai/Nilai/detail_ganjil_mhs/$1";

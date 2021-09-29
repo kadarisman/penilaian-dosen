@@ -8,6 +8,101 @@ class Nilai  extends CI_Controller
         check_login();
     }
 
+    public function detail_genap($kd_matakuliah)
+    {
+        $data['title'] = 'Detail';
+        $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+        $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['detail_genap'] = $this->Model_nilai->detail_genap($kd_matakuliah);
+        $data['mk'] = $this->Model_matakuliah->ambil_nama_mk($kd_matakuliah);
+
+
+
+        //prodi count user
+        $data['total_user_dosen_prodi'] = $this->Model_user->count_dosen_prodi();
+        $data['total_user_mahasiswa_prodi'] = $this->Model_user->count_mahasiswa_prodi();
+
+        //prodi count master data
+        $data['total_dosen_prodi'] = $this->Model_dosen->count_dosen_prodi();
+        $data['total_mahasiswa_prodi'] = $this->Model_mahasiswa->count_mahasiswa_prodi();
+        $data['total_matakuliah_prodi'] = $this->Model_matakuliah->count_matakuliah_prodi();
+
+        $data['matakuliah_prodi'] = $this->Model_matakuliah->get_all_matakuliah_prodi();
+
+        $data['total_nilai_prodi'] = $this->Model_nilai->count_nilai_prodi();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('prodi/detail_genap', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function detail_ganjil($kd_matakuliah)
+    {
+        $data['title'] = 'Detail';
+        $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+        $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['detail_ganjil'] = $this->Model_nilai->detail_ganjil($kd_matakuliah);
+        $data['mk'] = $this->Model_matakuliah->ambil_nama_mk($kd_matakuliah);
+
+        //prodi count user
+        $data['total_user_dosen_prodi'] = $this->Model_user->count_dosen_prodi();
+        $data['total_user_mahasiswa_prodi'] = $this->Model_user->count_mahasiswa_prodi();
+
+        //prodi count master data
+        $data['total_dosen_prodi'] = $this->Model_dosen->count_dosen_prodi();
+        $data['total_mahasiswa_prodi'] = $this->Model_mahasiswa->count_mahasiswa_prodi();
+        $data['total_matakuliah_prodi'] = $this->Model_matakuliah->count_matakuliah_prodi();
+
+        $data['total_nilai_prodi'] = $this->Model_nilai->count_nilai_prodi();
+        $data['matakuliah_prodi'] = $this->Model_matakuliah->get_all_matakuliah_prodi();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('prodi/detail_ganjil', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function detail_genap_mhs($kd_matakuliah)
+    {
+        $data['title'] = 'Detail';
+        $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['detail_genap_mhs'] = $this->Model_nilai->detail_genap_mhs($kd_matakuliah);
+        $data['mk'] = $this->Model_matakuliah->ambil_nama_mk($kd_matakuliah);
+
+        $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--//  
+
+
+        $data['total_nilai_mahasiswa'] = $this->Model_nilai->count_nilai_mahasiswa();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('mahasiswa/detail_genap_mhs', $data);
+        $this->load->view('templates/footer');
+    }
+    
+    public function detail_ganjil_mhs($kd_matakuliah)
+    {
+        $data['title'] = 'Detail';
+        $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['detail_ganjil_mhs'] = $this->Model_nilai->detail_ganjil_mhs($kd_matakuliah);
+        $data['mk'] = $this->Model_matakuliah->ambil_nama_mk($kd_matakuliah);
+
+        $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--//  
+
+
+        $data['total_nilai_mahasiswa'] = $this->Model_nilai->count_nilai_mahasiswa();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('mahasiswa/detail_ganjil_mhs', $data);
+        $this->load->view('templates/footer');
+    }
+
     //mahasiswa method
     public function get_nilai_mahasiswa()
     {

@@ -29,7 +29,7 @@
                                          <?= form_error('smester', '<small class="text-danger pl-3">', '</small>'); ?>
                                     </div>
                                     <div class="form-group has-feedback" style="width: 50%;">
-                                    <?php $tahun1 = date('Y'); $tahun2 = date('Y')-1;?>
+                                    <?php $tahun1 = date('Y'); $tahun2 = date('Y')+1;?>
                                     <input type="text" class="form-control" name="tahun_ajaran" value="<?=$tahun1, ' / ',$tahun2?>" readonly>
                                     </div>
                                     <div class="form-group has-feedback" style="width: 50%;">

@@ -13,7 +13,7 @@
                     <form action="" method="post">
                         <div class="box-body">
                             <div class="form-group has-feedback">
-                                <input type="text" class="form-control" placeholder="Username" name="username"
+                                <input type="text" class="form-control" placeholder="NIDN" name="username"
                                     id="username" value="<?= set_value('username'); ?>">
                                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
                                 <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -32,6 +32,18 @@
                                 <label>
                                     <input type="checkbox" class="chck"> Show Password
                                 </label>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="text" class="form-control" placeholder="Nama" name="nama_dosen"
+                                    id="nama_dosen" value="<?= set_value('nama_dosen'); ?>">
+                                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                                <?= form_error('nama_dosen', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <input type="text" class="form-control" placeholder="Alamat" name="alamat_dosen"
+                                    id="alamat_dosen" value="<?= set_value('alamat_dosen'); ?>">
+                                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                                <?= form_error('alamat_dosen', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="social-auth-links text-center">
                                 <button type="submit" class="btn btn-primary">Submit</button>

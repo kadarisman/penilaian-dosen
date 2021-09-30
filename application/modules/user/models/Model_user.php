@@ -99,6 +99,17 @@ class Model_user extends CI_Model
         $this->db->insert($table, $data);
     }
 
+    public function add_user_mhs($data, $dataMhs)
+    {
+        $this->db->insert('user', $data);
+        $this->db->insert('mahasiswa', $dataMhs);
+    }
+    public function add_user_dsn($data, $dataDsn)
+    {
+        $this->db->insert('user', $data);
+        $this->db->insert('dosen', $dataDsn);
+    }
+
     public function edit_user($data)
     {
         $this->db->where('id_user', $this->input->post('id_user'));

@@ -1047,8 +1047,8 @@ class User extends CI_Controller
     public function tambah_user_dosen_prodi()
     {
         $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
-            'is_unique' => 'Username sudah terdaftar..!',
-            'required' => 'Username tidak boleh kosong..!',
+            'is_unique' => 'NIDN sudah terdaftar..!',
+            'required' => 'NIDN tidak boleh kosong..!',
         ]);
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]|max_length[8]|matches[password2]', [
             'matches' => 'Password tidak sama..!',
@@ -1059,6 +1059,13 @@ class User extends CI_Controller
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password]', [
             'matches' => 'Ulangi password tidak sama',
             'required' => 'Ulangi password tidak boleh kosong'
+        ]);
+
+        $this->form_validation->set_rules('nama_dosen', 'Nama_dosen', 'required|trim', [
+            'required' => 'Nama Dosen tidak boleh kosong'
+        ]);
+        $this->form_validation->set_rules('alamat_dosen', 'Alamat_dosen', 'required|trim', [
+            'required' => 'Alamat Dosen tidak boleh kosong'
         ]);
 
         if ($this->form_validation->run() == false) {
@@ -1095,7 +1102,15 @@ class User extends CI_Controller
                 'level' => 'dosen',
                 'created' => date('d-m-Y H:i:s')
             ];
-            $this->Model_user->add_user($data, 'user');
+            $dataDsn = [
+                'NIDN' => htmlspecialchars($this->input->post('username', true)),
+                'kd_prodi' => $this->session->userdata('kd_prodi'),
+                'nama_dosen' => htmlspecialchars($this->input->post('nama_dosen', true)),
+                'alamat_dosen' => htmlspecialchars($this->input->post('alamat_dosen', true)),
+                'status' => 1,
+                'foto' => 'default.jpg'
+            ];
+            $this->Model_user->add_user_dsn($data, $dataDsn);
             $this->session->set_flashdata('message1', '<div class="alert alert-success" role="alert" id="msg">Berhasil di Tambah</div>');
             redirect('user-dosen-prodi');
         }
@@ -1167,8 +1182,8 @@ class User extends CI_Controller
     public function tambah_user_mahasiswa_prodi()
     {
         $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[user.username]', [
-            'is_unique' => 'Username sudah terdaftar..!',
-            'required' => 'Username tidak boleh kosong..!',
+            'is_unique' => 'NPM sudah terdaftar..!',
+            'required' => 'NPM tidak boleh kosong..!',
         ]);
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]|max_length[8]|matches[password2]', [
             'matches' => 'Password tidak sama..!',
@@ -1179,6 +1194,12 @@ class User extends CI_Controller
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password]', [
             'matches' => 'Ulangi password tidak sama',
             'required' => 'Ulangi password tidak boleh kosong'
+        ]);
+        $this->form_validation->set_rules('nama_mahasiswa', 'Nama_mahasiswa', 'required|trim', [
+            'required' => 'Nama Mahasiswa tidak boleh kosong'
+        ]);
+        $this->form_validation->set_rules('alamat_mahasiswa', 'Alamat_mahasiswa', 'required|trim', [
+            'required' => 'Alamat Mahasiswa tidak boleh kosong'
         ]);
 
 
@@ -1217,7 +1238,15 @@ class User extends CI_Controller
                 'level' => 'mahasiswa',
                 'created' => date('d-m-Y H:i:s')
             ];
-            $this->Model_user->add_user($data, 'user');
+            $dataMhs = [
+                'NPM' => htmlspecialchars($this->input->post('username', true)),
+                'kd_prodi' => $this->session->userdata('kd_prodi'),
+                'nama_mahasiswa' => htmlspecialchars($this->input->post('nama_mahasiswa', true)),
+                'alamat_mahasiswa' => htmlspecialchars($this->input->post('alamat_mahasiswa', true)),
+                'status' => 1,
+                'foto' => 'default.jpg'
+            ];
+            $this->Model_user->add_user_mhs($data, $dataMhs);
             $this->session->set_flashdata('message1', '<div class="alert alert-success" role="alert" id="msg">Berhasil di Tambah</div>');
             redirect('user-mahasiswa-prodi');
         }

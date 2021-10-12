@@ -85,6 +85,14 @@ class Model_user extends CI_Model
         return $this->db->get()->row();
     }
 
+    public function get_ta_by_id($id_tahun_ajaran)
+    {
+        $this->db->select('*');
+        $this->db->from('tahun_ajaran');
+        $this->db->where('id_tahun_ajaran', $id_tahun_ajaran);
+        return $this->db->get()->row();
+    }
+
     public function get_user_by_id2($id_user)
     {
         $this->db->select('*');
@@ -115,10 +123,21 @@ class Model_user extends CI_Model
         $this->db->where('id_user', $this->input->post('id_user'));
         $this->db->update('user', $data);
     }
+    public function edit_tahun_ajaran($data, $id)
+    {
+        $this->db->where('id_tahun_ajaran', $id);
+        $this->db->update('tahun_ajaran', $data);
+    }
 
     public function delete_user($id_user)
     {
         $this->db->delete('user', ['id_user' => $id_user]);
+    }
+
+
+    public function delete_tahun_ajaran($id_tahun_ajaran)
+    {
+        $this->db->delete('tahun_ajaran', ['id_tahun_ajaran' => $id_tahun_ajaran]);
     }
 
     //method for prodi count data user

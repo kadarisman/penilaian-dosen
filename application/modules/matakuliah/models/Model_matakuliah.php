@@ -52,6 +52,15 @@ class Model_matakuliah extends CI_Model
         $this->db->where($where);
         return $this->db->get()->result();
     }
+    public function get_all_tahun_ajaran()
+    {
+        //$prodi = $this->session->userdata('kd_prodi');
+        $this->db->select('*');
+        $this->db->from('tahun_ajaran');
+        //$where = array('matakuliah.kd_prodi' => $prodi);
+        //$this->db->where($where);
+        return $this->db->get()->result();
+    }
     public function add_matakuliah($data)
     {
         $this->db->insert('matakuliah', $data);

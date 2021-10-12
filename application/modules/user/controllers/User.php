@@ -49,10 +49,14 @@ class User extends CI_Controller
         $data['total_dosen_prodi'] = $this->Model_dosen->count_dosen_prodi();
         $data['total_mahasiswa_prodi'] = $this->Model_mahasiswa->count_mahasiswa_prodi();
         $data['total_matakuliah_prodi'] = $this->Model_matakuliah->count_matakuliah_prodi();
+
+        $data['tahun_ajaran'] = $this->Model_matakuliah->get_all_tahun_ajaran();
         
         $data['matakuliah_prodi'] = $this->Model_matakuliah->get_all_matakuliah_prodi();
         
-        
+        $id_tahun_ajaran = $this->input->post('id_tahun_ajaran');
+
+        $data['tahnajarn'] = $this->Model_user->get_ta_by_id($id_tahun_ajaran);
         //$data['count_nilai_prodi_per_mk'] = $this->Model_nilai->count_nilai_prodi_per_mk();
 
 
@@ -368,6 +372,84 @@ class User extends CI_Controller
             redirect('admin');
         }
     }
+
+    public function add_tahun_ajaran()
+    {
+        $data = [
+            'tahun' => htmlspecialchars($this->input->post('tahun', true)),
+            'smester' => htmlspecialchars($this->input->post('smester', true)),
+            'status' => htmlspecialchars($this->input->post('status', true)),
+        ];
+        //var_dump($data); die();
+        $this->db->insert('tahun_ajaran', $data);
+        $this->session->set_flashdata('message1', '<div class="alert alert-success" role="alert" id="msg">Berhasil di Tambah</div>');
+        redirect('user');
+    }
+
+    public function edit_tahun_ajaran()
+    {
+        
+       $id = $this->input->post('id');
+        $data = [
+            'tahun' => htmlspecialchars($this->input->post('tahun', true)),
+            'smester' => htmlspecialchars($this->input->post('smester', true)),
+            'status' => htmlspecialchars($this->input->post('status', true)),
+        ];
+        //var_dump($data); die();
+        //$this->db->update('tahun_ajaran', $data, $id);
+        $this->Model_user->edit_tahun_ajaran($data, $id);
+        $this->session->set_flashdata('message3', '<div class="alert alert-success" role="alert" id="msg">Berhasil di Edit</div>');
+        redirect('user');
+    }
+
+    // public function edit_tahun_ajaran($id_tahun_ajaran)
+    // {
+      
+    //         $data['title'] = 'Edit Tahun Ajaran';
+
+                
+    //         $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+    //         $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+    //         $data['user_dosen'] = $this->Model_user->user_dosen_get_data(); //--//
+    //         $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--//  
+
+         
+    //         $data['ta'] = $this->Model_user->get_ta_by_id($id_tahun_ajaran);
+
+    //         $data['total_user_mahasiswa'] = $this->Model_user->count_mahasiswa();
+    //         $data['total_user_prodi'] = $this->Model_user->count_prodi();
+    //         $data['total_user_dosen'] = $this->Model_user->count_dosen();
+    //         $data['total_user_bpm'] = $this->Model_user->count_bpm();
+    //         $data['total_user_admin'] = $this->Model_user->count_admin();
+
+
+    //         $data['total_fakultas'] = $this->Model_fakultas->count_fakultas();
+    //         $data['total_prodi'] = $this->Model_prodi->count_prodi();
+    //         $data['total_dosen'] = $this->Model_dosen->count_dosen();
+    //         $data['total_mahasiswa'] = $this->Model_mahasiswa->count_mahasiswa();
+    //         $data['total_pertanyaan'] = $this->Model_pertanyaan->count_pertanyaan();
+    //         $data['total_matakuliah'] = $this->Model_matakuliah->count_matakuliah();
+    //         $data['total_nilai_mahasiswa'] = $this->Model_nilai->count_nilai_mahasiswa();
+    //         $data['total_nilai_prodi'] = $this->Model_nilai->count_nilai_prodi();
+    //         $data['total_semua_nilai'] = $this->Model_nilai->count_nilai();
+
+    //         $this->load->view('templates/header', $data);
+    //         $this->load->view('templates/topbar', $data);
+    //         $this->load->view('templates/sidebar', $data);
+    //         $this->load->view('user/edit_tahun_ajaran', $data);
+    //         $this->load->view('templates/footer');
+
+    //         $data = [
+    //         'tahun' => htmlspecialchars($this->input->post('tahun', true)),
+    //         'smester' => htmlspecialchars($this->input->post('smester', true)),
+    //         'status' => htmlspecialchars($this->input->post('status', true))
+    //         ];
+
+    //         $this->Model_user->edit_tahun_ajaran($data);
+    //         $this->session->set_flashdata('message1', '<div class="alert alert-warning" id="msg" role="alert">Sudah diedit !</div>');
+    //         redirect('user');
+        
+    // }
 
     public function tambah_user_bpm()
     {
@@ -941,6 +1023,12 @@ class User extends CI_Controller
         $this->Model_user->delete_user($id_user);
         $this->session->set_flashdata('message1', '<div class="alert alert-success" role="alert" id="msg">Berhasil di Hapus</div>');
         redirect('admin');
+    }
+    public function delete_tahun_ajaran($id_tahun_ajaran)
+    {
+        $this->Model_user->delete_tahun_ajaran($id_tahun_ajaran);
+        $this->session->set_flashdata('message3', '<div class="alert alert-success" role="alert" id="msg">Berhasil di Hapus</div>');
+        redirect('user');
     }
 
     public function delete_user_bpm($id_user)

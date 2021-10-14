@@ -6,10 +6,10 @@
             <li><a href="<?= base_url('Dashboard') ?>"><i class="fa fa-users"></i> Dashboard
                     <span class="pull-right-container">
                     </span>
-                </a>
-
-                <!--untuk admin-->
-            </li><?php if ($user_session['level'] == 'admin') { ?>
+                </a>              
+            </li>
+              <!--untuk admin-->
+            <?php if ($user_session['level'] == 'admin') { ?>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-users"></i>
@@ -240,7 +240,7 @@
                             </span>
                         </a>
                     </li>
-                    <li><a href="<?= base_url('nilai-prd') ?>"><i class="fa fa-circle-o"></i>Data Nilai
+                    <li><a href="<?= base_url('nilai-prd') ?>"><i class="fa fa-circle-o"></i>Semua Data Nilai
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-red"><?= $total_nilai_prodi; ?></small>
                             </span>
@@ -252,6 +252,12 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li>
+                <a href="<?= base_url('Info-nilai') ?>"><i class="fa fa-bar-chart"></i> Rank Nilai
+                    <span class="pull-right-container">
+                    </span>
+                </a>              
             </li>
 
             <!--untuk mahasiswa-->

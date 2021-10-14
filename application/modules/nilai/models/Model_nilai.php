@@ -9,6 +9,40 @@ class Model_nilai extends CI_Model
         return $this->db->count_all_results('nilai');
     }
 
+    public function nilai_detail($NIDN)
+    {
+        $this->db->select('*');
+        $this->db->from('nilai');
+        $this->db->join('dosen', 'dosen.NIDN = nilai.NIDN', 'left');
+        $this->db->join('mahasiswa', 'mahasiswa.NPM = nilai.NPM', 'left');
+        $this->db->join('matakuliah', 'matakuliah.kd_matakuliah = nilai.kd_matakuliah', 'left');
+        $this->db->group_by('nilai.kd_matakuliah');
+        $this->db->order_by('nilai',' desc');
+        $this->db->where('nilai.NIDN', $NIDN);
+        return $this->db->get()->result();
+
+    }
+    // public function nilai_detail_by_mk($NIDN)
+    // {
+    //     $this->db->select('*');
+    //     $this->db->from('nilai');
+    //     $this->db->join('dosen', 'dosen.NIDN = nilai.NIDN', 'left');
+    //     $this->db->join('mahasiswa', 'mahasiswa.NPM = nilai.NPM', 'left');
+    //     $this->db->join('matakuliah', 'matakuliah.kd_matakuliah = nilai.kd_matakuliah', 'left');
+    //     $this->db->group_by('nilai.NIDN');
+    //     $this->db->group_by('nilai.kd_matakuliah');
+    //     $this->db->where('nilai.NIDN', $NIDN);
+    //     return $this->db->get()->result();
+
+    // }
+    public function get_dosen_by_id($NIDN)
+    {
+        $this->db->select('*');
+        $this->db->from('dosen');
+        $this->db->where('NIDN', $NIDN);
+        return $this->db->get()->row();
+    }
+
     public function detail_genap($kd_matakuliah)
     {
         $prodi = $this->session->userdata('kd_prodi');
@@ -265,6 +299,33 @@ class Model_nilai extends CI_Model
         $this->db->group_by(array('nilai.NIDN', 'nilai.kd_matakuliah', 'nilai.smester', 'nilai.tahun_ajaran'));
         $this->db->order_by('smester', 'desc');
         $this->db->order_by('tahun_ajaran', 'desc');
+        $this->db->where('dosen.kd_prodi', $kd_prodi);
+        return $this->db->get()->result();
+
+
+        // SELECT NIDN, SUM(nilai) AS total 
+        // FROM `nilai` 
+        // GROUP BY NIDN
+
+    }
+
+    public function informasi_nilai_prodi()
+    {
+        $tahun1 = date('Y');
+        $tahun2 = date('Y') + 1;
+        $ta= $tahun1.' / '. $tahun2;
+
+        $kd_prodi = $this->session->userdata('kd_prodi');
+        $this->db->select('*');
+        $this->db->select_sum('nilai');
+        $this->db->from('nilai');
+        $this->db->join('dosen', 'dosen.NIDN = nilai.NIDN', 'left');
+        //$this->db->join('matakuliah', 'matakuliah.kd_matakuliah = nilai.kd_matakuliah', 'left');
+        $this->db->group_by('nilai.NIDN');
+        //$this->db->group_by(array('nilai.NIDN', 'nilai.smester'));
+        //$this->db->order_by('smester', 'desc');
+        $this->db->order_by('nilai',' desc');
+        $this->db->where('nilai.tahun_ajaran', $ta);
         $this->db->where('dosen.kd_prodi', $kd_prodi);
         return $this->db->get()->result();
 

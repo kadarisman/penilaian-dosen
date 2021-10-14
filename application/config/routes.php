@@ -80,6 +80,7 @@ $route['dosen-prodi'] = "dosen/Dosen_prodi";
 $route['mahasiswa-prodi'] = "mahasiswa/Mahasiswa_prodi";
 $route['matakuliah-prodi'] = "matakuliah/Matakuliah_prodi";
 $route['nilai-prd'] = "nilai/Nilai/get_nilai_prodi";
+$route['Info-nilai'] = "nilai/Nilai/info_nilai_prodi";
 
 //routes for prodi add master data
 $route['tambah-dosen-prodi'] = "dosen/Dosen/tambah_dosen_prodi";
@@ -123,6 +124,9 @@ $route['detail/(:any)'] = "nilai/Nilai/detail_nilai/$1";
 $route['nilai-view'] = "nilai/Nilai/get_nilai_dosen_selfe";
 
 
+
+$route['detail-nilai/(:any)'] = "nilai/Nilai/detail_nilai_prodi/$1";
+//$route['detail-nilai'] = "nilai/Nilai/detail_nilai_prodi";
 
 $route['detail_genap/(:any)'] = "nilai/Nilai/detail_genap/$1";
 $route['detail_genap_mhs/(:any)'] = "nilai/Nilai/detail_genap_mhs/$1";

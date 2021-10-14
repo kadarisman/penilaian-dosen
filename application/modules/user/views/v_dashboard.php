@@ -65,7 +65,8 @@
                                             $this->db->where('kd_prodi', $user_prodi['kd_prodi']);
                                             $dos = $this->db->count_all_results();
 
-                                            $per = $hsl / $dos * 100;
+                                            //$per = $hsl / $dos * 100;
+                                            $per=round($hsl / $dos * 100,1);
                                             ?>
 
                                             <?php echo '<small>', $per, '%' ?>
@@ -105,7 +106,8 @@
                                         $this->db->where('kd_prodi', $user_prodi['kd_prodi']);
                                         $dosen = $this->db->count_all_results();
 
-                                        $persen = $hsl_ganjil / $dosen * 100;
+                                        //$persen = $hsl_ganjil / $dosen * 100;
+                                        $persen=round($hsl_ganjil / $dosen * 100,1);
                                         ?>
 
 

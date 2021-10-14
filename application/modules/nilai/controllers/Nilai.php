@@ -219,6 +219,77 @@ class Nilai  extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function info_nilai_prodi()
+    {
+        $data['title'] = 'Informasi Nilai';
+        //get data for session        
+        $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+        $data['user_dosen'] = $this->Model_user->user_dosen_get_data(); //--//
+        $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--// 
+
+        //count user
+        $data['total_user_mahasiswa_prodi'] = $this->Model_user->count_mahasiswa_prodi();
+        $data['total_user_dosen_prodi'] = $this->Model_user->count_dosen();
+
+        //count master data
+        $data['total_dosen_prodi'] = $this->Model_dosen->count_dosen_prodi();
+        $data['total_mahasiswa_prodi'] = $this->Model_mahasiswa->count_mahasiswa_prodi();
+        $data['total_matakuliah_prodi'] = $this->Model_matakuliah->count_matakuliah_prodi();
+        $data['total_nilai_prodi'] = $this->Model_nilai->count_nilai_prodi();
+
+        //get data
+        $data['nilai_prodi'] = $this->Model_nilai->get_nilai_prodi();
+        $data['rekap_prodi'] = $this->Model_nilai->informasi_nilai_prodi();
+        $data['nidn'] = $this->Model_nilai->count_NIDN_in_nilai();
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('prodi/v_info_nilai', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function detail_nilai_prodi($NIDN)
+    {
+        //var_dump($NIDN); die();
+        $data['title'] = 'Detail Nilai';
+        //get data for session        
+        $data['user_session'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['user_prodi'] = $this->Model_user->user_prodi_get_data(); // get data user prodi where her session
+        $data['user_dosen'] = $this->Model_user->user_dosen_get_data(); //--//
+        $data['user_mahasiswa'] = $this->Model_user->user_mahasiswa_get_data(); //--// 
+
+        //count user
+        $data['total_user_mahasiswa_prodi'] = $this->Model_user->count_mahasiswa_prodi();
+        $data['total_user_dosen_prodi'] = $this->Model_user->count_dosen();
+
+        //count master data
+        $data['total_dosen_prodi'] = $this->Model_dosen->count_dosen_prodi();
+        $data['total_mahasiswa_prodi'] = $this->Model_mahasiswa->count_mahasiswa_prodi();
+        $data['total_matakuliah_prodi'] = $this->Model_matakuliah->count_matakuliah_prodi();
+        $data['total_nilai_prodi'] = $this->Model_nilai->count_nilai_prodi();
+
+        //get data
+        $data['nilai_prodi'] = $this->Model_nilai->get_nilai_prodi();
+        $data['rekap_prodi'] = $this->Model_nilai->informasi_nilai_prodi();
+        $data['dosen_get'] = $this->Model_nilai->nilai_detail($NIDN);
+        //$data['sss'] = $this->Model_nilai->nilai_detail_by_mk($NIDN);
+
+        $data['iden'] = $this->Model_nilai->get_dosen_by_id($NIDN);
+
+        $data['nidn'] = $this->Model_nilai->count_NIDN_in_nilai();
+
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('prodi/v_detail_nilai', $data);
+        $this->load->view('templates/footer');
+    }
+
     public function rekapitulasi_prodi()
     {
         $data['title'] = 'Rekapitulasi';
